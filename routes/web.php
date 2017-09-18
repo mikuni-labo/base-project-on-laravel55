@@ -11,7 +11,8 @@
 |
 */
 
-Route::view('/',   'welcome');
-Route::get('home', 'HomeController@index')->name('home');
+Route::view('/',      'welcome')->name('top');
+Route::get('home',    'HomeController@index')->name('home');
+Route::get('phpinfo', 'HomeController@phpinfo')->name('phpinfo');
 
 Auth::routes();
