@@ -15,10 +15,13 @@ Route::view('/', 'welcome')->name('top');
 Route::get('home',                   'HomeController@index')->name('home');
 Route::get('phpinfo',                'TestController@phpinfo')->name('phpinfo');
 
+/**
+ * Auth
+ */
 Auth::routes();
 
 /**
- * Tests
+ * Test
  */
 Route::group([
     'prefix'     => 'test',

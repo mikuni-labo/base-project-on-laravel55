@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Router;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,24 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Router::group([
+    'prefix'    => '/',
+    'namespace' => 'Api',
+], function () {
+    /**
+     * v1
+     */
+    Router::group([
+        'prefix'    => 'v1',
+        'namespace' => studly_case('v1'),
+    ], function () {
+        /**
+         * tests
+         */
+        Router::group([
+            'prefix' => "tests",
+        ], function () {
+            Router::get('/', 'TestController@index');
+        });
+    });
+});
