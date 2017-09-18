@@ -11,8 +11,8 @@ class LocalServiceProvider extends ServiceProvider
      * @var array
      */
     protected $providers = [
-        \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,   // IDE Helper
-        \Barryvdh\Debugbar\ServiceProvider::class,                    // デバッガ
+        \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        \Barryvdh\Debugbar\ServiceProvider::class,
     ];
 
     /**
@@ -35,8 +35,7 @@ class LocalServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this->app->isLocal())
-        {
+        if( $this->app->isLocal() ) {
             $this->registerProviders();
             $this->registerAliases();
         }
@@ -47,8 +46,7 @@ class LocalServiceProvider extends ServiceProvider
      */
     protected function registerProviders()
     {
-        if (!empty($this->providers))
-        {
+        if( count($this->providers) ) {
             foreach ($this->providers as $provider) {
                 $this->app->register($provider);
             }
@@ -60,7 +58,7 @@ class LocalServiceProvider extends ServiceProvider
      */
     protected function registerAliases()
     {
-        if (!empty($this->aliases)) {
+        if( count($this->aliases) ) {
             $loader = AliasLoader::getInstance();
 
             foreach ($this->aliases as $alias => $facade) {
