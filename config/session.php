@@ -29,9 +29,8 @@ return [
     |
     */
 
-    'lifetime' => 120,
-
-    'expire_on_close' => false,
+    'lifetime'        => 120,
+    'expire_on_close' => env('SESSION_EXPIRE_ON_CLOSE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -123,7 +122,7 @@ return [
     */
 
     'cookie' => env(
-        'SESSION_COOKIE',
+        'SESSION_COOKIE_NAME',
         str_slug(env('APP_NAME', 'laravel'), '_').'_session'
     ),
 
@@ -177,7 +176,7 @@ return [
     |
     */
 
-    'http_only' => true,
+    'http_only' => env('SESSION_ONLY_HTTP_ACCESS', true),
 
     /*
     |--------------------------------------------------------------------------
