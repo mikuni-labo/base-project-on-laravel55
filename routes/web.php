@@ -11,8 +11,18 @@
 |
 */
 
-Route::view('/',      'welcome')->name('top');
-Route::get('home',    'HomeController@index')->name('home');
-Route::get('phpinfo', 'HomeController@phpinfo')->name('phpinfo');
+Route::view('/', 'welcome')->name('top');
+Route::get('home',                   'HomeController@index')->name('home');
+Route::get('phpinfo',                'TestController@phpinfo')->name('phpinfo');
 
 Auth::routes();
+
+/**
+ * Tests
+ */
+Route::group([
+    'prefix'     => 'test',
+], function() {
+    Route::get( '/',                 'TestController@index')->name('test');
+    Route::get( 'render_mailable',   'TestController@renderMailable')->name('test.render_mailable');
+});
