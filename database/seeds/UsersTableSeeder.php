@@ -1,6 +1,5 @@
 <?php
 
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -22,8 +21,8 @@ class UsersTableSeeder extends Seeder
                 'name'         => '和田邦康',
                 'email'        => 'k-wada@mikunilabo.com',
                 'password'     => bcrypt('p1p1p1p1'),
-                'created_at'   => Carbon::now(),
-                'updated_at'   => Carbon::now(),
+                'created_at'   => \Carbon::now(),
+                'updated_at'   => \Carbon::now(),
             ],
         ]);
     }
