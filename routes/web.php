@@ -29,3 +29,4 @@ Route::group([
     Route::get( '/',                 'TestController@index')->name('test');
     Route::get( 'render_mailable',   'TestController@renderMailable')->name('test.render_mailable');
 });
+

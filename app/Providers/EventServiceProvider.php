@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Laravel\Passport\Events\AccessTokenCreated;
+use Laravel\Passport\Events\RefreshTokenCreated;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -13,9 +15,23 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
+        /**
+         * アクセストークン発行時のイベントハンドラ
+         */
+        AccessTokenCreated::class => [
+//             'App\Listeners\RevokeOldTokens',
         ],
+
+        /**
+         * アクセストークンリフレッシュ時のイベントハンドラ
+         */
+        RefreshTokenCreated::class => [
+//             'App\Listeners\PruneOldTokens',
+        ],
+
+//         'App\Events\Event' => [
+//             'App\Listeners\EventListener',
+//         ],
     ];
 
     /**
