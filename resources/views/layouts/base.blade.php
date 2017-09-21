@@ -23,6 +23,8 @@
     </div>
 
     <!-- Scripts -->
+    <script type="text/javascript" src="{{ asset('js/manifest.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script>
     <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
     <script type="text/javascript">
           window.Laravel = window.Laravel || {};
