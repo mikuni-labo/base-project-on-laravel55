@@ -78,7 +78,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;ログイン</a></li>
-                            <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;登録</a></li>
+                            <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;アカウント登録</a></li>
                         </ul>
                     @endguest
                 </li>

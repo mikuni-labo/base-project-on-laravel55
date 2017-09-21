@@ -8,14 +8,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+                @include('flash::message')
+
+                @if( session('status') )
+                    <?php // パスワードリセット時などの組み込み機能等はFlashパッケージ非使用のため、ひとまずsessionのstatusを表示している ?>
+                    <div class="alert alert-success">{{ session('status') }}</div>
+                @endif
+
                 <div class="jumbotron">
-                    @if(false) @include('flash::message') @endif
-
-                    @if( session('status') )
-                        <?php // パスワードリセット時などの組み込み機能等はFlashパッケージ非使用のため、ひとまずsessionのstatusを表示している ?>
-                        <div class="alert alert-success">{{ session('status') }}</div>
-                    @endif
-
                     <h1>Hello, world!</h1>
                     <p>
                         This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
