@@ -11,5 +11,16 @@ let mix = require('laravel-mix');
  |
  */
 
+// sass
+mix.sass('resources/assets/sass/app.scss', 'public/css');
+
+// js
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .extract(['vue']);
+
+// Versioning
+if ( mix.inProduction() ) {
+    mix.version();
+} else {
+	mix.sourceMaps();
+}
