@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.base')
 
 @section('meta')
     <title>ホーム｜{{ config('app.name') }}</title>
