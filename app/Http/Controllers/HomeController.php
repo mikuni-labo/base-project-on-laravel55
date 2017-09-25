@@ -14,16 +14,19 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->middleware('auth');
     }
 
     /**
      * Show the application dashboard.
      *
+     * @method GET
      * @param Request $request
      * @return View
      */
-    public function index(Request $request) : View
+    public function __invoke(Request $request) : View
     {
         return view('home');
     }
