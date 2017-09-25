@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/',         'HomeController@index')->name('home');
+Route::get('/',         'HomeController')->name('home');
 Route::get('phpinfo',   'TestController@phpinfo')->name('phpinfo');
 
 /**

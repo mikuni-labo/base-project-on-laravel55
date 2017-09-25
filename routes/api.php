@@ -39,7 +39,7 @@ Route::get('user', function (Request $request) {
 //         Router::group([
 //             'prefix' => "tests",
 //         ], function () {
-//             Router::get('/', 'TestController@index');
+//             Router::get('/', 'TestController');
 //         });
 //     });
 // });

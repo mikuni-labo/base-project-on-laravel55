@@ -23,7 +23,7 @@ class TestController extends Controller
      * @param Request $request
      * @return
      */
-    public function index(Request $request)
+    public function __invoke(Request $request)
     {
         return response()->json([
             'test' => 1,
