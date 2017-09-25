@@ -57,13 +57,7 @@
                             <li role="separator" class="divider"></li>
 
                             <li>
-                                @if(false)
-                                    <a href="{{ route('logout') }}" onclick="return false;" id="logoutBtn">
-                                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;ログアウト
-                                    </a>
-                                @endif
-
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); if (confirm()) document.getElementById('logout-form').submit(); return false;">
                                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;ログアウト
                                 </a>
 
