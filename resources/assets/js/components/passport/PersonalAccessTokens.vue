@@ -18,8 +18,8 @@
                             Personal Access Tokens
                         </span>
 
-                        <a class="action-link" @click="showCreateTokenForm">
-                            Create New Token
+                        <a class="action-link btn btn-primary btn-sm" @click="showCreateTokenForm">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Create New Token
                         </a>
                     </div>
                 </div>
@@ -48,8 +48,8 @@
 
                                 <!-- Delete Button -->
                                 <td style="vertical-align: middle;">
-                                    <a class="action-link text-danger" @click="revoke(token)">
-                                        Delete
+                                    <a class="action-link btn btn-danger btn-sm" @click="revoke(token)">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                     </a>
                                 </td>
                             </tr>

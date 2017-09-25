@@ -17,8 +17,8 @@
                         OAuth Clients
                     </span>
 
-                    <a class="action-link" @click="showCreateClientForm">
-                        Create New Client
+                    <a class="action-link btn btn-primary btn-sm" @click="showCreateClientForm">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Create New Client
                     </a>
                 </div>
             </div>
@@ -59,15 +59,15 @@
 
                             <!-- Edit Button -->
                             <td style="vertical-align: middle;">
-                                <a class="action-link" @click="edit(client)">
-                                    Edit
+                                <a class="action-link btn btn-success btn-sm" @click="edit(client)">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                 </a>
                             </td>
 
                             <!-- Delete Button -->
                             <td style="vertical-align: middle;">
-                                <a class="action-link text-danger" @click="destroy(client)">
-                                    Delete
+                                <a class="action-link btn btn-danger btn-sm" @click="destroy(client)">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                 </a>
                             </td>
                         </tr>
