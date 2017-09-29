@@ -22,24 +22,24 @@ Route::get('user', function (Request $request) {
  * Resources server.
  * ※OAuthと混同するので一旦コメントアウトしておく
  */
-// Router::group([
-//     'prefix'    => '/',
-//     'namespace' => 'Api',
-// ], function () {
-//     /**
-//      * v1
-//      */
-//     Router::group([
-//         'prefix'    => 'v1',
-//         'namespace' => studly_case('v1'),
-//     ], function () {
-//         /**
-//          * tests
-//          */
-//         Router::group([
-//             'prefix' => "tests",
-//         ], function () {
-//             Router::get('/', 'TestController');
-//         });
-//     });
-// });
+Router::group([
+    'prefix'    => '/',
+    'namespace' => 'Api',
+], function () {
+    /**
+     * v1
+     */
+    Router::group([
+        'prefix'    => 'v1',
+        'namespace' => studly_case('v1'),
+    ], function () {
+        /**
+         * tests
+         */
+        Router::group([
+            'prefix' => "tests",
+        ], function () {
+            Router::get('/', 'TestController');
+        });
+    });
+});
