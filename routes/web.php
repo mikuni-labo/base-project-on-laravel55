@@ -40,9 +40,17 @@ Route::get('passport/oauth', function () {                // 利用側アプリ�
 Route::get('passport/oauth/callback', function (Request $request) { // 利用側アプリのコールバックURL
     $http = new GuzzleHttp\Client;
 
-    $response = $http->post(url('oauth/token'), [        // 申請先アプリへのアクセストークンリクエスト先URL
+    if( ! $request->has('code') ) {
+        // ここで認可が拒否されましたというようなメッセージをフラッシュメッセージに入れつつ、元の画面へリダイレクトする
+    }
+
+    /**
+     * 認証コードが返されたら、OAuthサーバの認証コードテーブルとOAuthクライアントテーブルから
+     * client_id, client_secret, redirect_uriを取得して/oauth/tokenへpostする形か？
+     */
+    $response = $http->post(url('oauth/token'), [                         // 申請先アプリへのアクセストークンリクエスト先URL
         'form_params'       => [
-            'grant_type'    => 'authorization_code',     // グラント種別：コード認証
+            'grant_type'    => 'authorization_code',                      // グラント種別：コード認証
             'client_id'     => 21,                                        // 申請先アプリ内で登録済みのクライアントID
             'client_secret' => 'btb6D6JW1e2SVWIvus5I16niDIZmYfMtwxwAtVul',// 申請先アプリ内で登録済みのクライアントシークレット
             'redirect_uri'  => url('passport/oauth/callback'),            // 申請先アプリ内で登録済みの利用側アプリのコールバックURL
