@@ -26,45 +26,31 @@ Auth::routes();
  */
 Route::view('passport', 'passport')->name('passport');
 
-Route::get('passport/oauth', function () {
+Route::get('passport/oauth', function () {                // 利用側アプリのOAuth認証テスト用のURL
     $query = http_build_query([
-        'client_id'     => '4',
-        'redirect_uri'  => url('passport/oauth/callback'),
-        'response_type' => 'code',
-        'scope'         => '',
+        'client_id'     => 21,                            // 申請先アプリ内で登録済みのクライアントID
+        'redirect_uri'  => url('passport/oauth/callback'),// 利用側アプリのコールバックURL（申請先アプリ内で登録済みであることが条件）
+        'response_type' => 'code',                        // 認証コードをリクエスト
+        'scope'         => '*',                           // ひとまず全権限
     ]);
 
-    return redirect(url('oauth/authorize') .'?'. $query);
+    return redirect(url('oauth/authorize') .'?'. $query); // 申請先アプリへGETでリクエストを送信 → この後、申請先アプリ内の認可・拒否フォームが表示される
 });
 
-Route::get('passport/oauth/callback', function (Request $request) {
+Route::get('passport/oauth/callback', function (Request $request) { // 利用側アプリのコールバックURL
     $http = new GuzzleHttp\Client;
 
-    $response = $http->post(url('oauth/token'), [
+    $response = $http->post(url('oauth/token'), [        // 申請先アプリへのアクセストークンリクエスト先URL
         'form_params'       => [
-            'grant_type'    => 'authorization_code',
-            'client_id'     => 4,
-            'client_secret' => 'PSpaBGgrryuIqUd5P0klitdKDNLpHh0i3Z6qBxVk',
-            'redirect_uri'  => url('passport/oauth/callback'),
-            'code'          => $request->code,
+            'grant_type'    => 'authorization_code',     // グラント種別：コード認証
+            'client_id'     => 21,                                        // 申請先アプリ内で登録済みのクライアントID
+            'client_secret' => 'btb6D6JW1e2SVWIvus5I16niDIZmYfMtwxwAtVul',// 申請先アプリ内で登録済みのクライアントシークレット
+            'redirect_uri'  => url('passport/oauth/callback'),            // 申請先アプリ内で登録済みの利用側アプリのコールバックURL
+            'code'          => $request->code,                            // コールバック時に受け取る認証コード
         ],
     ]);
 
     return json_decode((string) $response->getBody(), true);
-});
-
-Route::get('passport/token_test', function (Request $request) {
-    $client = new GuzzleHttp\Client;
-    $accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijg0M2MzN2NkNTRiZGQ0ZDY0NTM2MWQ0YmVmOWMwZTdmOTQ1ZTIxOWJkMzFlNjM4MGRlNTE1MTBkMTQ0ZTlmYTZmZjFmMjE0OGUzMzNjYWNiIn0.eyJhdWQiOiIxIiwianRpIjoiODQzYzM3Y2Q1NGJkZDRkNjQ1MzYxZDRiZWY5YzBlN2Y5NDVlMjE5YmQzMWU2MzgwZGU1MTUxMGQxNDRlOWZhNmZmMWYyMTQ4ZTMzM2NhY2IiLCJpYXQiOjE1MDU4MDc4NTksIm5iZiI6MTUwNTgwNzg1OSwiZXhwIjoxNTM3MzQzODU5LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.m6wGnzi7_4LREwm380deHhQ43h9wNY-Rdo6AEpTFeds7-QN-pXFjCRDZxXiVfdp-a_tDoyeI8gxnXfcoxLL02foPdzBdM1IUU7vZD6ULaCqdlPSSPSWFvZQI5A48U4r9TRGmYIx6aLoHqRf17o1gssw1dcDoRAyeXZJbuGXQvBabZYzg9a3o7GOO_HFBAjajXKGYk-vvP2G0dQzuGGP8PLdqKWC9crRwx9T6r-5DxxQazUx0aDBdWw0kebCT3BAHc-kbcnIPoi4BZvoBNTHqlmW5t6wexX_KKRlY1asUC5D4p5Bh6ctPe9m3v1JI-x3bJ7AuSxdsTaxapZjlcNEEVE8DAXR3qCrzLm8K0UZ40xrbBpFcjlL9I9SbPvhx0RDH1qon-ZG68SSDnQWidPZPqfl4VKFbWFe6nU-xusfVNigzNAMIi9nZaR1xREkHIDCD9zqHSBaUIs0qh79hZn74g13IKi_EjGl5NFNZ-KQTXAjTyQjUsQdiFY9cvo-VnFijOFZ8TmYqsFU8ORrSgSWlXtDYkayUL47A9nrxp6tSjHlNzAnrN9FkaBJcDZbXNZZN3jdwUFAYkkLUoqUVtR1QgrJn3Z2APfqsRHOAcU4WdJ-h8lYEuA8XCEup0qlq3PI1kalclPM6AYlHdKGFiAxPQWzY6pPhVXvsu5RP_1HiU1I";
-
-    $response = $client->request('GET', url('api/user'), [
-        'headers' => [
-            'Accept' => 'application/json',
-            'Authorization' => 'Bearer ' . $accessToken,
-        ],
-    ]);
-
-    return json_decode((string)$response->getBody(), true);
 });
 
 /**

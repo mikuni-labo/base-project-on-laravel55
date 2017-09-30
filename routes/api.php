@@ -18,6 +18,12 @@ Route::get('user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
+Route::get('client', function (Request $request) {
+    return response()->json([
+        'result' => true,
+    ]);
+})->middleware('client');
+
 /**
  * Resources server.
  * ※OAuthと混同するので一旦コメントアウトしておく
