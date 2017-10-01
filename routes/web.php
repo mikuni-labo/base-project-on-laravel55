@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/',         'HomeController')->name('home');
-Route::get('phpinfo',   'TestController@phpinfo')->name('phpinfo');
+Route::get('phpinfo',   'PhpinfoController')->name('phpinfo');
 
 /**
  * Auth
@@ -22,7 +22,7 @@ Route::get('phpinfo',   'TestController@phpinfo')->name('phpinfo');
 Auth::routes();
 
 /**
- * Passport Client Test.
+ * Passport
  */
 Route::view('passport', 'passport')->name('passport');
 
@@ -65,9 +65,9 @@ Route::get('passport/oauth/callback', function (Request $request) { // 利用側
  * Test
  */
 Route::group([
-    'prefix'     => 'test',
+    'prefix'    => 'test',
+    'namespace' => 'Test',
 ], function() {
-    Route::get( '/',                 'TestController@index')->name('test');
-    Route::get( 'render_mailable',   'TestController@renderMailable')->name('test.render_mailable');
+    Route::get( 'render_mailable',   'RenderMailableController')->name('test.render_mailable');
 });
 
