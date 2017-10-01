@@ -14,7 +14,7 @@ class TestController extends Controller
      */
     public function __construct()
     {
-//         $this->middleware('auth:api');
+        $this->middleware('auth:api');
     }
 
     /**
@@ -25,9 +25,7 @@ class TestController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return response()->json([
-            'test' => 1,
-        ]);
+        return $request->user();
     }
 
 }

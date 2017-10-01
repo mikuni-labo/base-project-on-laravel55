@@ -22,14 +22,6 @@ Router::group([
     'prefix'    => '',
     'namespace' => 'Api',
 ], function () {
-
-    /**
-     * テスト用の認証ユーザを返すエンドポイント（いずれ削除）
-     */
-    Route::get('user', function (Request $request) {
-        return $request->user();
-    })->middleware('auth:api');
-
     /**
      * テスト用のクライアント認証ミドルウェアを試すエンドポイント（いずれ削除）
      */
