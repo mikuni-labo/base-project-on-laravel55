@@ -17,8 +17,6 @@ class CallbackController extends Controller
     public function __construct()
     {
         parent::__construct();
-
-        $this->middleware('auth');
     }
 
     /**
@@ -33,8 +31,8 @@ class CallbackController extends Controller
         $http = new Client;
 
         if( ! $request->has('code') ) {
-            session('status', 'アプリケーションから認可が拒否されました。');
-            return redirect()->route('passport');
+            \Flash::info('アプリケーションから認可が拒否されました。');
+            return response()->json($request->all(), 403);
         }
 
         /**
@@ -42,13 +40,16 @@ class CallbackController extends Controller
          * client_id, client_secret, redirect_uriを取得して/oauth/tokenへpostする形か？
          */
         $response = $http->post(url('oauth/token'), [                         // 申請先アプリへのアクセストークンリクエスト先URL
-            'form_params'       => [
+            'form_params' => [
                 'grant_type'    => 'authorization_code',                      // グラント種別：コード認証
                 'client_id'     => 3,                                         // 申請先アプリ内で登録済みのクライアントID
-                'client_secret' => '1mTJGc0tIcRzwCEuAuH8JBL8xLvfGlwBn4ipQzj9',// 申請先アプリ内で登録済みのクライアントシークレット
+                'client_secret' => 'dxNiv74REm50bWLGyvKLrwbOLfy0mG6KAgzPJ7s8',// 申請先アプリ内で登録済みのクライアントシークレット
                 'redirect_uri'  => route('passport.oauth.callback'),          // 申請先アプリ内で登録済みの利用側アプリのコールバックURL
                 'code'          => $request->code,                            // コールバック時に受け取る認証コード
             ],
+//             'proxy' => [
+//                 'http' => 'tcp://172.18.0.3:8000',
+//             ],
         ]);
 
         return json_decode((string) $response->getBody(), true);

@@ -19,7 +19,7 @@ class PassportServiceProvider extends ServiceProvider
         Passport::refreshTokensExpireIn(\Carbon::now()->addDays(30));
 
         Passport::tokensCan([
-//             '*'             => 'Has all grants',
+            '*'             => 'All grants',
             'user-get'      => 'Get user',
             'user-get-all'  => 'Get all users',
             'user-create'   => 'Create user',
