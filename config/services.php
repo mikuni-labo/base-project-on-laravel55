@@ -37,16 +37,34 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-    'github'   => [
-        'client_id'     => env('GITHUB_CLIENT_ID'),
-        'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect'      => 'http://127.0.0.1:8000/socialite/github/callback',
-    ],
-
     'google'   => [
         'client_id'     => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect'      => 'http://127.0.0.1:8000/socialite/google/callback',
+        'redirect'      => url('socialite/google/callback'),
+    ],
+
+    'twitter'   => [
+        'client_id'     => env('TWITTER_CLIENT_ID'),
+        'client_secret' => env('TWITTER_CLIENT_SECRET'),
+        'redirect'      => url('socialite/twitter/callback'),
+    ],
+
+    'facebook'   => [
+        'client_id'     => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect'      => url('socialite/facebook/callback'),
+    ],
+
+    'github'   => [
+        'client_id'     => env('GITHUB_CLIENT_ID'),
+        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'redirect'      => url('socialite/github/callback'),
+    ],
+
+    'bitbucket'   => [
+        'client_id'     => env('BITBUCKET_CLIENT_ID'),
+        'client_secret' => env('BITBUCKET_CLIENT_SECRET'),
+        'redirect'      => url('socialite/bitbucket/callback'),
     ],
 
 ];
