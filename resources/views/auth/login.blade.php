@@ -68,7 +68,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <a class="btn btn-block btn-social btn-google">
+                                    <a href="{{ route('socialite', 'google') }}" class="btn btn-block btn-social btn-google">
                                       <span class="fa fa-google"></span>Sign in with Google
                                     </a>
                                 </div>
