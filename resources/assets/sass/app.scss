@@ -1,15 +1,18 @@
 
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
 // Variables
 @import "variables";
 
-// Mixins
-@import "mixins";
-
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Font Awesome
+@import "node_modules/font-awesome-scss/scss/font-awesome.scss";
+
+// Social
+@import "social";
+
+// Mixins
+@import "mixins";
 
 /**
  * App

@@ -44,11 +44,23 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-8 col-md-offset-4">
+                                <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">送信</button>
 
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;パスワードをお忘れの方
+                                    </a>
+                                </div>
+                                <hr>
+                                <div class="col-md-6 col-md-offset-4">
+                                    <a class="btn btn-block btn-social btn-github">
+                                      <span class="fa fa-github"></span>
+                                      Sign in with GitHub
+                                    </a>
+                                </div>
+                                <div class="col-md-6 col-md-offset-4">
+                                    <a class="btn btn-social-icon btn-twitter">
+                                      <span class="fa fa-twitter"></span>
                                     </a>
                                 </div>
                             </div>
