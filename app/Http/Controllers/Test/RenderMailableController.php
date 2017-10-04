@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\Test;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TestMailable;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
-class TestController extends Controller
+class RenderMailableController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -14,19 +16,18 @@ class TestController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api');
-        $this->middleware('scopes:user-delete,user-update');
+        $this->middleware('auth');
     }
 
     /**
-     * Show the application dashboard.
+     * Render mailable test.
      *
      * @param Request $request
      * @return
      */
     public function __invoke(Request $request)
     {
-        return $request->user();
+        return new TestMailable;
     }
 
 }

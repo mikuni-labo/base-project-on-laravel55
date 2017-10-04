@@ -14,32 +14,37 @@ use Illuminate\Routing\Router;
 |
 */
 
-Route::get('user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
-
 /**
- * Resources server.
- * ※OAuthと混同するので一旦コメントアウトしておく
+ * prefix: api
+ * middleware: api
  */
-// Router::group([
-//     'prefix'    => '/',
-//     'namespace' => 'Api',
-// ], function () {
-//     /**
-//      * v1
-//      */
-//     Router::group([
-//         'prefix'    => 'v1',
-//         'namespace' => studly_case('v1'),
-//     ], function () {
-//         /**
-//          * tests
-//          */
-//         Router::group([
-//             'prefix' => "tests",
-//         ], function () {
-//             Router::get('/', 'TestController');
-//         });
-//     });
-// });
+Router::group([
+    'prefix'    => '',
+    'namespace' => 'Api',
+], function () {
+    /**
+     * テスト用のクライアント認証ミドルウェアを試すエンドポイント（いずれ削除）
+     */
+    Route::get('client', function (Request $request) {
+        return response()->json([
+            'result' => true,
+        ]);
+    })->middleware('client');
+
+    /**
+     * v1
+     */
+    Router::group([
+        'prefix'    => 'v1',
+        'namespace' => studly_case('v1'),
+    ], function () {
+        /**
+         * tests
+         */
+        Router::group([
+            'prefix' => "tests",
+        ], function () {
+            Router::get('/', 'TestController');
+        });
+    });
+});
