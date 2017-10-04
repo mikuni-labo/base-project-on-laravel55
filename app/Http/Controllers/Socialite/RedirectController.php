@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Github;
+namespace App\Http\Controllers\Socialite;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{RedirectResponse,Request};
 use Illuminate\View\View;
 
-class IndexController extends Controller
+class RedirectController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,7 +17,7 @@ class IndexController extends Controller
     {
         parent::__construct();
 
-        $this->middleware('auth');
+        $this->middleware('guest');
     }
 
     /**
@@ -25,11 +25,12 @@ class IndexController extends Controller
      *
      * @method GET
      * @param Request $request
+     * @param string $provider
      * @return RedirectResponse
      */
-    public function __invoke(Request $request) : RedirectResponse
+    public function __invoke(Request $request, string $provider) : RedirectResponse
     {
-        return \Socialite::with('github')->redirect();
+        return \Socialite::with($provider)->redirect();
     }
 
 }

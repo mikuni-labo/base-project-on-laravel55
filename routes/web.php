@@ -48,11 +48,11 @@ Route::group([], function() {
      * GitHub
      */
     Route::group([
-        'prefix'    => 'github',
-        'namespace' => 'Github',
+        'prefix'    => 'socialite/{provider}',
+        'namespace' => 'Socialite',
     ], function() {
-        Route::get( '/',                 'IndexController')->name('github');
-        Route::get( 'callback',          'CallbackController')->name('github.callback');
+        Route::get( '/',                 'RedirectController')->name('socialite');
+        Route::get( 'callback',          'CallbackController')->name('socialite.callback');
     });
 
     /**

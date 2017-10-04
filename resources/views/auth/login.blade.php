@@ -82,7 +82,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <a class="btn btn-block btn-social btn-github">
+                                    <a href="{{ route('socialite', 'github') }}" class="btn btn-block btn-social btn-github">
                                       <span class="fa fa-github"></span>Sign in with GitHub
                                     </a>
                                 </div>

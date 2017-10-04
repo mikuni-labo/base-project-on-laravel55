@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Github;
+namespace App\Http\Controllers\Socialite;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class CallbackController extends Controller
     {
         parent::__construct();
 
-        $this->middleware('auth');
+        $this->middleware('guest');
     }
 
     /**
@@ -25,11 +25,12 @@ class CallbackController extends Controller
      *
      * @method GET
      * @param Request $request
+     * @param string $provider
      * @return View
      */
-    public function __invoke(Request $request) : View
+    public function __invoke(Request $request, string $provider) : View
     {
-        dd( \Socialite::with('github')->user() );
+        dd( \Socialite::with($provider)->user() );
 
 //         $userData = \Socialite::with('github')->user();
 
