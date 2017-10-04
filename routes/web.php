@@ -45,6 +45,17 @@ Route::group([], function() {
     });
 
     /**
+     * GitHub
+     */
+    Route::group([
+        'prefix'    => 'github',
+        'namespace' => 'Github',
+    ], function() {
+        Route::get( '/',                 'IndexController')->name('github');
+        Route::get( 'callback',          'CallbackController')->name('github.callback');
+    });
+
+    /**
      * Test
      */
     Route::group([
