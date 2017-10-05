@@ -31,4 +31,18 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * Returns the webhook URL for notification to Slack.
+     *
+     * @return string
+     */
+    public function routeNotificationForSlack()
+    {
+        /**
+         * XXX ここはユーザ毎のフックURLにするべきかもしれないがテストのため一旦configから取得する
+         */
+        return !empty(config('notification.slack.webhook_url')) ? config('notification.slack.webhook_url') : false;
+    }
+
 }
