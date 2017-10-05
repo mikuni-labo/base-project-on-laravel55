@@ -40,31 +40,31 @@ return [
     'google'   => [
         'client_id'     => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect'      => url('socialite/google/callback'),
+        'redirect'      => str_finish(env('APP_URL'), '/') . 'socialite/google/callback',
     ],
 
     'twitter'   => [
         'client_id'     => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect'      => url('socialite/twitter/callback'),
+        'redirect'      => str_finish(env('APP_URL'), '/') . 'socialite/twitter/callback',
     ],
 
     'facebook'   => [
         'client_id'     => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect'      => url('socialite/facebook/callback'),
+        'redirect'      => str_finish(env('APP_URL'), '/') . 'socialite/facebook/callback',
     ],
 
     'github'   => [
         'client_id'     => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect'      => url('socialite/github/callback'),
+        'redirect'      => str_finish(env('APP_URL'), '/') . 'socialite/github/callback',
     ],
 
     'bitbucket'   => [
         'client_id'     => env('BITBUCKET_CLIENT_ID'),
         'client_secret' => env('BITBUCKET_CLIENT_SECRET'),
-        'redirect'      => url('socialite/bitbucket/callback'),
+        'redirect'      => str_finish(env('APP_URL'), '/') . 'socialite/bitbucket/callback',
     ],
 
 ];
