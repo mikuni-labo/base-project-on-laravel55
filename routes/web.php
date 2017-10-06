@@ -60,6 +60,8 @@ Route::group([], function() {
         'prefix'    => 'test',
         'namespace' => 'Test',
     ], function() {
+        Route::get( '/',                 'IndexController')->name('test');
+        Route::get( 'vue',               'VueController')->name('test.vue');
         Route::get( 'render_mailable',   'RenderMailableController')->name('test.render_mailable');
         Route::get( 'notification',      'NotificationController')->name('test.notification');
     });
