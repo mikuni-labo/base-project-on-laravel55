@@ -44,11 +44,53 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-8 col-md-offset-4">
+                                <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">送信</button>
 
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;パスワードをお忘れの方
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <a class="btn btn-block btn-social btn-facebook">
+                                      <span class="fa fa-facebook"></span>Sign in with Facebook
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <a class="btn btn-block btn-social btn-twitter">
+                                      <span class="fa fa-twitter"></span>Sign in with Twitter
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <a href="{{ route('socialite', 'google') }}" class="btn btn-block btn-social btn-google">
+                                      <span class="fa fa-google"></span>Sign in with Google
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <a class="btn btn-block btn-social btn-dropbox">
+                                      <span class="fa fa-dropbox"></span>Sign in with Dropbox
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <a href="{{ route('socialite', 'github') }}" class="btn btn-block btn-social btn-github">
+                                      <span class="fa fa-github"></span>Sign in with GitHub
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <a class="btn btn-block btn-social btn-bitbucket">
+                                      <span class="fa fa-bitbucket"></span>Sign in with Bitbucket
                                     </a>
                                 </div>
                             </div>

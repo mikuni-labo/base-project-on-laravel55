@@ -15,8 +15,8 @@ class PassportServiceProvider extends ServiceProvider
     public function boot()
     {
         Passport::routes();
-        Passport::tokensExpireIn(\Carbon::now()->addDays(15));
-        Passport::refreshTokensExpireIn(\Carbon::now()->addDays(30));
+        Passport::tokensExpireIn(now()->addDays(15));
+        Passport::refreshTokensExpireIn(now()->addDays(30));
 
         Passport::tokensCan([
             '*'             => 'All grants',
