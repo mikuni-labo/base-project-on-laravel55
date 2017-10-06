@@ -6,6 +6,14 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateUsersTable extends Migration
 {
+    /** @var array */
+    private $roles = [
+        'user',
+        'store-admin',
+        'company-admin',
+        'master',
+    ];
+
     /**
      * Run the migrations.
      *
@@ -18,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->enum('role', $this->roles);
             $table->rememberToken();
             $table->timestamps();
         });
