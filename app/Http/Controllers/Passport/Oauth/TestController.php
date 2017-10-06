@@ -27,7 +27,7 @@ class TestController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function __invoke(Request $request) : RedirectResponse
+    public function __invoke(Request $request): RedirectResponse
     {
         $query = http_build_query([
             'client_id'     => 3,                               // 申請先アプリ内で登録済みのクライアントID

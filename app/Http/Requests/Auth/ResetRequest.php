@@ -19,7 +19,7 @@ class ResetRequest extends AuthRequest
      *
      * @return boolean
      */
-    public function authorize() : bool
+    public function authorize(): bool
     {
         return true;
     }
@@ -29,7 +29,7 @@ class ResetRequest extends AuthRequest
      *
      * @return array
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [
             'email'    => 'required|string|email|max:191|exists:users',
@@ -43,7 +43,7 @@ class ResetRequest extends AuthRequest
      * {@inheritDoc}
      * @see \Illuminate\Foundation\Http\FormRequest::messages()
      */
-    public function messages() : array
+    public function messages(): array
     {
         return [
             //

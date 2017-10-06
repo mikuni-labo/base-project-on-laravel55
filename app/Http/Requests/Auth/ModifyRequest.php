@@ -23,7 +23,7 @@ class ModifyRequest extends AuthRequest
      *
      * @return boolean
      */
-    public function authorize() : bool
+    public function authorize(): bool
     {
         return true;
     }
@@ -33,7 +33,7 @@ class ModifyRequest extends AuthRequest
      *
      * @return array
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [
             'name'     => 'required|string|max:191',
@@ -48,7 +48,7 @@ class ModifyRequest extends AuthRequest
      * {@inheritDoc}
      * @see \Illuminate\Foundation\Http\FormRequest::messages()
      */
-    public function messages() : array
+    public function messages(): array
     {
         return [
             //

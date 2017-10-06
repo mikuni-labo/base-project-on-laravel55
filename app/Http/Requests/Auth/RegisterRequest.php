@@ -19,7 +19,7 @@ class RegisterRequest extends AuthRequest
      *
      * @return boolean
      */
-    public function authorize() : bool
+    public function authorize(): bool
     {
         return true;
     }
@@ -29,7 +29,7 @@ class RegisterRequest extends AuthRequest
      *
      * @return array
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [
             'name'     => 'required|string|max:191',
@@ -44,7 +44,7 @@ class RegisterRequest extends AuthRequest
      * {@inheritDoc}
      * @see \Illuminate\Foundation\Http\FormRequest::messages()
      */
-    public function messages() : array
+    public function messages(): array
     {
         return [
             //

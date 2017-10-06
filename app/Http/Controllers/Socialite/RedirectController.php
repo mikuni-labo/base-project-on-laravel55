@@ -28,7 +28,7 @@ class RedirectController extends Controller
      * @param string $provider
      * @return RedirectResponse
      */
-    public function __invoke(Request $request, string $provider) : RedirectResponse
+    public function __invoke(Request $request, string $provider): RedirectResponse
     {
         return \Socialite::with($provider)->redirect();
     }
