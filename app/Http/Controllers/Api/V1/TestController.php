@@ -19,7 +19,7 @@ class TestController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Test
      *
      * @param Request $request
      * @return
