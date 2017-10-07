@@ -62,6 +62,46 @@ class User extends Authenticatable
     protected $perPage = 10;
 
     /**
+     * Check the user role.
+     *
+     * @return bool
+     */
+    public function isMaster()
+    {
+        return $this->role === 'master';
+    }
+
+    /**
+     * Check the user role.
+     *
+     * @return bool
+     */
+    public function isCompanyAdmin()
+    {
+        return $this->role === 'company-admin';
+    }
+
+    /**
+     * Check the user role.
+     *
+     * @return bool
+     */
+    public function isStoreAdmin()
+    {
+        return $this->role === 'store-admin';
+    }
+
+    /**
+     * Check the user role.
+     *
+     * @return bool
+     */
+    public function isStoreUser()
+    {
+        return $this->role === 'store-user';
+    }
+
+    /**
      * Returns the webhook URL for notification to Slack.
      *
      * @return string
