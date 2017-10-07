@@ -17,28 +17,28 @@ class UsersTableSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
 
         User::create([
-            'name'         => '和田邦康',
+            'name'         => config('fixture.user_role.master'),
             'role'         => 'master',
             'email'        => 'k-wada@mikunilabo.com',
             'password'     => bcrypt('p1p1p1p1'),
         ]);
 
         User::create([
-            'name'         => '企業管理者',
+            'name'         => config('fixture.user_role.company-admin'),
             'role'         => 'company-admin',
             'email'        => 'redbull.816.com@gmail.com',
             'password'     => bcrypt('p1p1p1p1'),
         ]);
 
         User::create([
-            'name'         => '店舗管理者',
+            'name'         => config('fixture.user_role.store-admin'),
             'role'         => 'store-admin',
             'email'        => 'red.bull.816.com@gmail.com',
             'password'     => bcrypt('p1p1p1p1'),
         ]);
 
         User::create([
-            'name'         => '店舗管理者',
+            'name'         => config('fixture.user_role.store-user'),
             'email'        => 're.d.bull.816.com@gmail.com',
             'password'     => bcrypt('p1p1p1p1'),
         ]);
