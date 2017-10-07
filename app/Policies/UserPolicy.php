@@ -16,7 +16,7 @@ class UserPolicy
      * @param  string $ability
      * @return boolean|null
      */
-    public function before(User $myself, string $ability)
+    public function before(User $myself, string $ability): ?bool
     {
         if ($myself->isMaster() && $ability !== 'delete') {
             return true;
@@ -27,9 +27,9 @@ class UserPolicy
      * Determine whether the user can get index of users.
      *
      * @param  User  $myself
-     * @return mixed
+     * @return bool
      */
-    public function getIndex(User $myself)
+    public function getIndex(User $myself): bool
     {
         //
     }
@@ -39,9 +39,9 @@ class UserPolicy
      *
      * @param  User  $myself
      * @param  User  $user
-     * @return mixed
+     * @return bool
      */
-    public function get(User $myself, User $user)
+    public function get(User $myself, User $user): bool
     {
         if ($myself->isCompanyAdmin()) {
 //             return // TODO 同一企業IDのみ;
@@ -56,9 +56,9 @@ class UserPolicy
      * Determine whether the user can create users.
      *
      * @param  User $myself
-     * @return mixed
+     * @return bool
      */
-    public function create(User $myself)
+    public function create(User $myself): bool
     {
         //
     }
@@ -68,9 +68,9 @@ class UserPolicy
      *
      * @param  User  $myself
      * @param  User  $user
-     * @return mixed
+     * @return bool
      */
-    public function update(User $myself, User $user)
+    public function update(User $myself, User $user): bool
     {
         //
     }
@@ -80,9 +80,9 @@ class UserPolicy
      *
      * @param  User  $myself
      * @param  User  $user
-     * @return mixed
+     * @return bool
      */
-    public function delete(User $myself, User $user)
+    public function delete(User $myself, User $user): bool
     {
         //
     }
@@ -92,9 +92,9 @@ class UserPolicy
      *
      * @param  User  $myself
      * @param  User  $user
-     * @return mixed
+     * @return bool
      */
-    public function restore(User $myself, User $user)
+    public function restore(User $myself, User $user): bool
     {
         //
     }
