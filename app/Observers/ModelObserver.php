@@ -25,7 +25,7 @@ class ModelObserver
      */
     public function updating(Model $model)
     {
-//         $this->convertEmptyStringsToNull($model);
+        $this->convertEmptyStringsToNull($model);
     }
 
     /**
