@@ -3,13 +3,14 @@
 namespace App\Model;
 
 use App\Traits\ModelObservable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasApiTokens, ModelObservable;
+    use SoftDeletes, Notifiable, HasApiTokens, ModelObservable;
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +32,34 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * The attributes for cast to Carbon.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    /**
+     * The attributes for casts.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id'     => 'int',
+        'name'   => 'string',
+        'email'  => 'string',
+        'role'   => 'string',
+    ];
+
+    /**
+     * @var integer
+     */
+    protected $perPage = 10;
 
     /**
      * Returns the webhook URL for notification to Slack.

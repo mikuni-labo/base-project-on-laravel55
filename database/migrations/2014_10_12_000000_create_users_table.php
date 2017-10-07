@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->enum('role', array_keys(config('fixture.user_role')));
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
