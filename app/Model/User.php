@@ -66,7 +66,7 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function isMaster()
+    public function isMaster(): bool
     {
         return $this->role === 'master';
     }
@@ -76,7 +76,7 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function isCompanyAdmin()
+    public function isCompanyAdmin(): bool
     {
         return $this->role === 'company-admin';
     }
@@ -86,7 +86,7 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function isStoreAdmin()
+    public function isStoreAdmin(): bool
     {
         return $this->role === 'store-admin';
     }
@@ -96,7 +96,7 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function isStoreUser()
+    public function isStoreUser(): bool
     {
         return $this->role === 'store-user';
     }

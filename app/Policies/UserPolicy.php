@@ -16,12 +16,12 @@ class UserPolicy
      * @param  string $ability
      * @return boolean|null
      */
-//     public function before(User $myself, string $ability)
-//     {
-//         if ($myself->isMaster()) {
-//             return true;
-//         }
-//     }
+    public function before(User $myself, string $ability)
+    {
+        if ($myself->isMaster() && $ability !== 'delete') {
+            return true;
+        }
+    }
 
     /**
      * Determine whether the user can get index of users.
@@ -43,8 +43,13 @@ class UserPolicy
      */
     public function get(User $myself, User $user)
     {
-        dd($myself->id);
-        dd($user->id);
+        if ($myself->isCompanyAdmin()) {
+//             return // TODO 同一企業IDのみ;
+        } elseif ($myself->isStoreAdmin()) {
+//             return // TODO 同一店舗IDのみ;
+        }
+
+        return $myself->id === $user->id;
     }
 
     /**
