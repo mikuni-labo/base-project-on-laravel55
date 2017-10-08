@@ -99,6 +99,9 @@ return [
     |
     */
 
+    'true_value'         => 'The :attribute must be a true value.',
+    'false_value'        => 'The :attribute must be a false value.',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
