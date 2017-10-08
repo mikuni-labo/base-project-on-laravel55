@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,6 +43,17 @@ Route::group([], function() {
     });
 
     /**
+     * GitHub
+     */
+    Route::group([
+        'prefix'    => 'socialite/{provider}',
+        'namespace' => 'Socialite',
+    ], function() {
+        Route::get( '/',                 'RedirectController')->name('socialite');
+        Route::get( 'callback',          'CallbackController')->name('socialite.callback');
+    });
+
+    /**
      * Test
      */
     Route::group([
@@ -52,5 +61,6 @@ Route::group([], function() {
         'namespace' => 'Test',
     ], function() {
         Route::get( 'render_mailable',   'RenderMailableController')->name('test.render_mailable');
+        Route::get( 'notification',      'NotificationController')->name('test.notification');
     });
 });

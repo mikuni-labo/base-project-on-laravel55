@@ -39,12 +39,23 @@ Router::group([
         'namespace' => studly_case('v1'),
     ], function () {
         /**
+         * users
+         */
+        Router::group([
+            'prefix'    => 'users',
+            'namespace' => 'Users',
+        ], function () {
+//             Router::get('/',        'IndexController');
+            Router::get('/{user}',  'GetController');
+        });
+
+        /**
          * tests
          */
         Router::group([
-            'prefix' => "tests",
+            'prefix' => 'tests',
         ], function () {
-            Router::get('/', 'TestController');
+            Router::get('/',        'TestController');
         });
     });
 });
