@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1\Users;
 
 use App\Http\Controllers\Controller;
 use App\Model\User;
+use App\Http\Resources\User\UserResource;
 use Illuminate\Http\{JsonResponse,Request};
 
 class GetController extends Controller
@@ -30,7 +31,7 @@ class GetController extends Controller
     {
         $this->authorize('get', $user);
 
-        return $user;
+        return new UserResource($user);
     }
 
 }
