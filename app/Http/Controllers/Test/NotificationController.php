@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Test;
 
+use App\Events\TestEvent;
 use App\Http\Controllers\Controller;
 use App\Notifications\TestNotification;
 use Illuminate\Http\Request;
@@ -28,7 +29,11 @@ class NotificationController extends Controller
      */
     public function __invoke(Request $request, TestNotification $notification)
     {
-        return auth()->user()->notify($notification);
+        event(new TestEvent($notification));
+
+        \Flash::success('イベント発火');
+
+        return redirect()->route('home');
     }
 
 }
