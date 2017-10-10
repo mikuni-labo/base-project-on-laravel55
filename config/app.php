@@ -179,6 +179,7 @@ return [
         App\Providers\LocalServiceProvider::class,
         App\Providers\BladeServiceProvider::class,
         App\Providers\PassportServiceProvider::class,
+        App\Providers\ResourceServiceProvider::class,
 
     ],
 
