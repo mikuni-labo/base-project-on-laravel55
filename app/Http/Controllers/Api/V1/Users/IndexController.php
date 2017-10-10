@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api\V1\Users;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\User\UserResource;
+use App\Http\Resources\User\UsersCollection;
 use App\Model\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class GetController extends Controller
+class IndexController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,7 +18,7 @@ class GetController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
-        $this->middleware('scopes:user-get');
+        $this->middleware('scopes:user-index');
     }
 
     /**
@@ -26,13 +26,13 @@ class GetController extends Controller
      *
      * @param  Request $request
      * @param  User $user
-     * @return Resource
+     * @return ResourceCollection
      */
-    public function __invoke(Request $request, User $user): Resource
+    public function __invoke(Request $request, User $user): ResourceCollection
     {
-        $this->authorize('get', $user);
+        $this->authorize('index', $user);
 
-        return new UserResource($user);
+        return new UsersCollection($user->all());
     }
 
 }

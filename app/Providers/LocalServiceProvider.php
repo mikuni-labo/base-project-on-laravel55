@@ -13,6 +13,7 @@ class LocalServiceProvider extends ServiceProvider
     protected $providers = [
         \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         \Barryvdh\Debugbar\ServiceProvider::class,
+        \Laravel\Dusk\DuskServiceProvider::class,
     ];
 
     /**
@@ -35,7 +36,7 @@ class LocalServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if( $this->app->isLocal() ) {
+        if( $this->app->environment('local', 'testing') ) {
             $this->registerProviders();
             $this->registerAliases();
         }
