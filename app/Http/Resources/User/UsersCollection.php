@@ -14,6 +14,8 @@ class UsersCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return $this->collection->map(function($user) {
+            return new UserResource($user);
+        });
     }
 }

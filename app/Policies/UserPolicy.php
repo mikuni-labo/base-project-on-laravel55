@@ -21,6 +21,8 @@ class UserPolicy
         if ($myself->isMaster() && $ability !== 'delete') {
             return true;
         }
+
+        return null;
     }
 
     /**
@@ -29,9 +31,15 @@ class UserPolicy
      * @param  User  $myself
      * @return bool
      */
-    public function getIndex(User $myself): bool
+    public function index(User $myself): bool
     {
-        //
+        if ($myself->isCompanyAdmin()) {
+//             return // TODO 同一企業IDのみ;
+        } elseif ($myself->isStoreAdmin()) {
+//             return // TODO 同一店舗IDのみ;
+        }
+
+        return false;
     }
 
     /**

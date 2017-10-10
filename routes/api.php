@@ -45,7 +45,7 @@ Router::group([
             'prefix'    => 'users',
             'namespace' => 'Users',
         ], function () {
-//             Router::get('/',        'IndexController');
+            Router::get('/',        'IndexController');
             Router::get('/{user}',  'GetController');
         });
 
