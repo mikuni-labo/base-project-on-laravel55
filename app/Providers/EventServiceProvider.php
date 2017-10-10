@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Listeners\SlackNotification;
+use App\Events\TestEvent;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Laravel\Passport\Events\AccessTokenCreated;
@@ -15,6 +17,13 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        /**
+         * テスト通知
+         */
+        TestEvent::class => [
+            SlackNotification::class,
+        ],
+
         /**
          * アクセストークン発行時のイベントハンドラ
          */
