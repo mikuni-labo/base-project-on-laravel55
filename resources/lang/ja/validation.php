@@ -89,6 +89,9 @@ return [
     |
     */
 
+    'true_value'         => ':attribute は、真の値を指定してください。',
+    'false_value'        => ':attribute は、偽の値を指定してください。',
+
     'custom' => [
         'attribute-name' => [
             'rule-name'  => 'custom-message',
