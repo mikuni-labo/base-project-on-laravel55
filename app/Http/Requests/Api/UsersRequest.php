@@ -22,7 +22,10 @@ class UsersRequest
     public function rules()
     {
         return [
-            'id'   => 'integer|digits_between:1,10',
+            'paginate' => 'boolean',
+            'page'     => 'integer|digits_between:1,10',
+            'offset'   => 'integer|digits_between:1,10',
+            'perPage'  => 'integer|digits_between:1,10',
         ];
     }
 

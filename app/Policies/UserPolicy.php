@@ -33,10 +33,8 @@ class UserPolicy
      */
     public function index(User $myself): bool
     {
-        if ($myself->isCompanyAdmin()) {
-//             return // TODO 同一企業IDのみ;
-        } elseif ($myself->isStoreAdmin()) {
-//             return // TODO 同一店舗IDのみ;
+        if ($myself->isCompanyAdmin() || $myself->isStoreAdmin()) {
+            return true;
         }
 
         return false;

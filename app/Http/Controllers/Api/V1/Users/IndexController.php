@@ -36,7 +36,7 @@ class IndexController extends Controller
 
         $request->validate($validator->rules(), $validator->messages(), $validator->attributes());
 
-        return new UsersCollection($user->all());
+        return new UsersCollection($user->search($request));
     }
 
 }
