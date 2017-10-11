@@ -3,14 +3,25 @@
 namespace App\Model;
 
 use App\Traits\ModelObservable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
     use SoftDeletes, Notifiable, HasApiTokens, ModelObservable;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -50,7 +61,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'id'     => 'int',
         'name'   => 'string',
         'email'  => 'string',
         'role'   => 'string',
@@ -112,6 +122,46 @@ class User extends Authenticatable
          * XXX ここはユーザ毎のフックURLにするべきかもしれないがテストのため一旦configから取得する
          */
         return !empty(config('notification.slack.webhook_url')) ? config('notification.slack.webhook_url') : false;
+    }
+
+    /**
+     * Return records with condition of request parameters.
+     *
+     * @param  Request $request
+     * @param  array $cols
+     * @return Collection|LengthAwarePaginator
+     */
+    public function search(Request $request, $cols = ['*'])
+    {
+        /**
+         * @var Builder $query
+         */
+        $query = self::query();
+        $perPage = $request->has('per_page') ? $request->per_page : $this->per_page;
+
+        if ($request->user()->isStoreAdmin()) {
+//             $query->where() // TODO 同一店舗IDのみ
+        } elseif ($request->user()->isCompanyAdmin()) {
+//             $query->where() // TODO 同一企業IDのみ
+        }
+
+        if (!empty($request->with_trashed)) {
+            $query->withTrashed();
+        }
+
+        if (!empty($request->paginate)) {
+            $currentPage = $request->has('page') ? $request->page : 1;
+            return $query->paginate($perPage, $cols, 'page', $currentPage)->appends($request->all());
+        } else {
+            $query->select($cols);
+            $query->take($perPage);
+
+            if (!empty($request->offset)) {
+                $query->skip($request->offset);
+            }
+
+            return $query->get();
+        }
     }
 
 }

@@ -17,10 +17,15 @@ class UserResource extends Resource
         return [
             'id'         => $this->id,
             'name'       => $this->name,
-            'role'       => $this->role,
+            'role'       => $this->when(!$request->user()->isStoreUser(), $this->role),
             'email'      => $this->email,
-            'created_at' => $this->created_at->toIso8601String(),
-            'updated_at' => $this->updated_at->toIso8601String(),
+            $this->mergeWhen($request->user()->isMaster(), [
+                'password'       => $this->password,
+                'remember_token' => $this->remember_token,
+            ]),
+            'created_at' => $this->created_at ? $this->created_at->toIso8601String() : null,
+            'updated_at' => $this->updated_at ? $this->updated_at->toIso8601String() : null,
+            'deleted_at' => $this->deleted_at ? $this->deleted_at->toIso8601String() : null,
         ];
     }
 }

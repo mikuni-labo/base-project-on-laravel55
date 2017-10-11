@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Users;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\UsersRequest;
 use App\Http\Resources\User\UsersCollection;
 use App\Model\User;
 use Illuminate\Http\Request;
@@ -25,14 +26,17 @@ class IndexController extends Controller
      * Get the user.
      *
      * @param  Request $request
+     * @param  UsersRequest $validator
      * @param  User $user
      * @return ResourceCollection
      */
-    public function __invoke(Request $request, User $user): ResourceCollection
+    public function __invoke(Request $request, UsersRequest $validator, User $user): ResourceCollection
     {
         $this->authorize('index', $user);
 
-        return new UsersCollection($user->all());
+        $request->validate($validator->rules(), $validator->messages(), $validator->attributes());
+
+        return new UsersCollection($user->search($request));
     }
 
 }
