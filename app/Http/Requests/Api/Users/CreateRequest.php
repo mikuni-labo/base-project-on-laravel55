@@ -30,6 +30,9 @@ class CreateRequest extends UsersRequest
             'role'     => [
                 new UserRole,
             ],
+            /**
+             * TODO 権限によって、登録可能な企業ID・店舗IDを振り分ける
+             */
         ];
     }
 
