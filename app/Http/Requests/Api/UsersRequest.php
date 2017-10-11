@@ -22,10 +22,11 @@ class UsersRequest
     public function rules()
     {
         return [
-            'paginate' => 'boolean',
-            'page'     => 'integer|digits_between:1,10',
-            'offset'   => 'integer|digits_between:1,10',
-            'perPage'  => 'integer|digits_between:1,10',
+            'paginate'     => 'boolean',
+            'with_trashed' => 'boolean',
+            'page'         => 'integer|digits_between:1,10',
+            'offset'       => 'integer|digits_between:1,10',
+            'per_page'     => 'integer|digits_between:1,10',
         ];
     }
 

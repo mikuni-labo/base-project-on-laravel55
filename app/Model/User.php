@@ -137,12 +137,16 @@ class User extends Authenticatable
          * @var Builder $query
          */
         $query = self::query();
-        $perPage = $request->has('perPage') ? $request->perPage : $this->perPage;
+        $perPage = $request->has('per_page') ? $request->per_page : $this->per_page;
 
         if ($request->user()->isStoreAdmin()) {
 //             $query->where() // TODO 同一店舗IDのみ
         } elseif ($request->user()->isCompanyAdmin()) {
 //             $query->where() // TODO 同一企業IDのみ
+        }
+
+        if (!empty($request->with_trashed)) {
+            $query->withTrashed();
         }
 
         if (!empty($request->paginate)) {
