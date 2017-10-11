@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Api;
+namespace App\Http\Requests\Api\Users;
 
-class UsersRequest
+use App\Rules\UserRole;
+
+class CreateRequest extends UsersRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +24,12 @@ class UsersRequest
     public function rules()
     {
         return [
-            'paginate'     => 'boolean',
-            'with_trashed' => 'boolean',
-            'page'         => 'integer|digits_between:1,10',
-            'offset'       => 'integer|digits_between:1,10',
-            'per_page'     => 'integer|digits_between:1,10',
+            'name'     => 'required|string|max:191',
+            'email'    => 'required|string|email|max:191|unique:users',
+            'password' => 'required|string|min:6|max:16|confirmed',// TODO passwordは確認用も含むのか検討
+            'role'     => [
+                new UserRole,
+            ],
         ];
     }
 
@@ -36,18 +39,6 @@ class UsersRequest
      * @return array
      */
     public function messages()
-    {
-        return [
-            //
-        ];
-    }
-
-    /**
-     * Get the validation attributes that apply to the request.
-     *
-     * @return array
-     */
-    public function attributes()
     {
         return [
             //
