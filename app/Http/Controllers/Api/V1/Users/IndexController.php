@@ -23,8 +23,9 @@ class IndexController extends Controller
     }
 
     /**
-     * Get the user.
+     * Get users.
      *
+     * @method GET
      * @param  Request $request
      * @param  IndexRequest $validator
      * @param  User $user

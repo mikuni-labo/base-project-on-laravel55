@@ -23,8 +23,9 @@ class CreateController extends Controller
     }
 
     /**
-     * Get the user.
+     * Create the user.
      *
+     * @method POST
      * @param  Request $request
      * @param  CreateRequest $validator
      * @param  User $user

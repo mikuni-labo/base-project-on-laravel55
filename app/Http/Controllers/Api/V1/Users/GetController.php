@@ -24,6 +24,7 @@ class GetController extends Controller
     /**
      * Get the user.
      *
+     * @method GET
      * @param  Request $request
      * @param  User $user
      * @return Resource

@@ -23,8 +23,9 @@ class UpdateController extends Controller
     }
 
     /**
-     * Get the user.
+     * Update the user.
      *
+     * @method PUT
      * @param  Request $request
      * @param  UpdateRequest $validator
      * @param  User $user
