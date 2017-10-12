@@ -44,6 +44,7 @@ Route::group([
         ], function () {
             Route::get('/',         'IndexController');
             Route::post('/',        'CreateController');
+            Route::patch('/{id}',   'RestoreController');
 
             Route::group([
                 'prefix'    => '{user}',
@@ -51,7 +52,6 @@ Route::group([
                 Route::get('/',     'GetController');
                 Route::put('/',     'UpdateController');
                 Route::delete('/',  'DeleteController');
-//                 Route::patch('/',   'RestoreController');
             });
         });
 
