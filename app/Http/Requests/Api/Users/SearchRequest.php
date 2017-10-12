@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Api\Users;
 
-class IndexRequest extends UsersRequest
+class SearchRequest extends UsersRequest
 {
     /**
      * Determine if the user is authorized to make this request.

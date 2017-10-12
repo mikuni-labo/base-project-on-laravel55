@@ -44,14 +44,14 @@ Route::group([
         ], function () {
             Route::get('/',         'IndexController');
             Route::post('/',        'CreateController');
+            Route::patch('/{id}',   'RestoreController');
 
             Route::group([
                 'prefix'    => '{user}',
             ], function () {
                 Route::get('/',     'GetController');
-//                 Route::put('/',     'UpdateController');
-//                 Route::delete('/',  'DeleteController');
-//                 Route::patch('/',   'RestoreController');
+                Route::put('/',     'UpdateController');
+                Route::delete('/',  'DeleteController');
             });
         });
 

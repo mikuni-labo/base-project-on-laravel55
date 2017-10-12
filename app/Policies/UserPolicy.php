@@ -78,7 +78,13 @@ class UserPolicy
      */
     public function update(User $myself, User $user): bool
     {
-        //
+        if ($myself->isCompanyAdmin()) {
+//             return // TODO 同一企業IDのみ;
+        } elseif ($myself->isStoreAdmin()) {
+//             return // TODO 同一店舗IDのみ;
+        }
+
+        return $myself->id === $user->id;
     }
 
     /**
@@ -90,7 +96,15 @@ class UserPolicy
      */
     public function delete(User $myself, User $user): bool
     {
-        //
+        if ($myself->isCompanyAdmin()) {
+//             return // TODO 同一企業IDのみ;
+        } elseif ($myself->isStoreAdmin()) {
+//             return // TODO 同一店舗IDのみ;
+        } elseif ($myself->isStoreUser()) {
+            return false;
+        }
+
+        return $myself->id !== $user->id;
     }
 
     /**
@@ -102,7 +116,15 @@ class UserPolicy
      */
     public function restore(User $myself, User $user): bool
     {
-        //
+        if ($myself->isCompanyAdmin()) {
+            //             return // TODO 同一企業IDのみ;
+        } elseif ($myself->isStoreAdmin()) {
+            //             return // TODO 同一店舗IDのみ;
+        } elseif ($myself->isStoreUser()) {
+            return false;
+        }
+
+        return $myself->id !== $user->id;
     }
 
 }

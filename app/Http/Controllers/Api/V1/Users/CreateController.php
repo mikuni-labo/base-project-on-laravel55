@@ -19,12 +19,13 @@ class CreateController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
-        $this->middleware('scopes:user-delete');
+        $this->middleware('scopes:user-create');
     }
 
     /**
-     * Get the user.
+     * Create the user.
      *
+     * @method POST
      * @param  Request $request
      * @param  CreateRequest $validator
      * @param  User $user

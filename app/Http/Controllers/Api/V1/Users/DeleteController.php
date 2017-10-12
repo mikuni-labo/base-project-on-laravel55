@@ -8,7 +8,7 @@ use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\Resource;
 
-class GetController extends Controller
+class DeleteController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,22 +18,24 @@ class GetController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
-        $this->middleware('scopes:user-get');
+        $this->middleware('scopes:user-delete');
     }
 
     /**
-     * Get the user.
+     * Delete the user.
      *
-     * @method GET
+     * @method DELETE
      * @param  Request $request
      * @param  User $user
-     * @return Resource
+     * @return mixed
      */
-    public function __invoke(Request $request, User $user): Resource
+    public function __invoke(Request $request, User $user)
     {
-        $this->authorize('get', $user);
+        $this->authorize('delete', $user);
 
-        return new UserResource($user);
+        $user->delete();
+
+        return response('', 204);
     }
 
 }
