@@ -49,7 +49,7 @@ Route::group([
                 'prefix'    => '{user}',
             ], function () {
                 Route::get('/',     'GetController');
-//                 Route::put('/',     'UpdateController');
+                Route::put('/',     'UpdateController');
 //                 Route::delete('/',  'DeleteController');
 //                 Route::patch('/',   'RestoreController');
             });
