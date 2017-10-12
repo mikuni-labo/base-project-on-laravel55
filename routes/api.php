@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Routing\Router;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,14 +15,14 @@ use Illuminate\Routing\Router;
  * prefix: api
  * middleware: api
  */
-Router::group([
+Route::group([
     'prefix'    => '',
     'namespace' => 'Api',
 ], function () {
     /**
      * テスト用のクライアント認証ミドルウェアを試すエンドポイント（いずれ削除）
      */
-    Route::get('client', function (Request $request) {
+    Route::get('client', function () {
         return response()->json([
             'result' => true,
         ]);
@@ -34,28 +31,37 @@ Router::group([
     /**
      * v1
      */
-    Router::group([
+    Route::group([
         'prefix'    => 'v1',
         'namespace' => studly_case('v1'),
     ], function () {
         /**
          * users
          */
-        Router::group([
+        Route::group([
             'prefix'    => 'users',
             'namespace' => 'Users',
         ], function () {
-            Router::get('/',        'IndexController');
-            Router::get('/{user}',  'GetController');
+            Route::get('/',         'IndexController');
+            Route::post('/',        'CreateController');
+
+            Route::group([
+                'prefix'    => '{user}',
+            ], function () {
+                Route::get('/',     'GetController');
+//                 Route::put('/',     'UpdateController');
+//                 Route::delete('/',  'DeleteController');
+//                 Route::patch('/',   'RestoreController');
+            });
         });
 
         /**
          * tests
          */
-        Router::group([
+        Route::group([
             'prefix' => 'tests',
         ], function () {
-            Router::get('/',        'TestController');
+            Route::get('/',        'TestController');
         });
     });
 });

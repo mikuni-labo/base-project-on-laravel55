@@ -46,7 +46,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-header">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;{{ Auth::user()->name }}&nbsp;としてログインしています。
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;{{ Auth::user()->name }}（{{ config('fixture.user_role')[Auth::user()->role] }}）としてログインしています。
                             </li>
 
                             <li role="separator" class="divider"></li>

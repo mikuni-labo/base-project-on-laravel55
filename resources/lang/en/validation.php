@@ -101,6 +101,7 @@ return [
 
     'true_value'         => 'The :attribute must be a true value.',
     'false_value'        => 'The :attribute must be a false value.',
+    'user_role'          => 'The :attribute is illegal value.',
 
     'custom' => [
         'attribute-name' => [

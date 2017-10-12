@@ -66,7 +66,7 @@ class UserPolicy
      */
     public function create(User $myself): bool
     {
-        //
+        return ! $myself->isStoreUser();
     }
 
     /**
