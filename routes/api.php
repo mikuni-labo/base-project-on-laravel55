@@ -50,7 +50,7 @@ Route::group([
             ], function () {
                 Route::get('/',     'GetController');
                 Route::put('/',     'UpdateController');
-//                 Route::delete('/',  'DeleteController');
+                Route::delete('/',  'DeleteController');
 //                 Route::patch('/',   'RestoreController');
             });
         });
