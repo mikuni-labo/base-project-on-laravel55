@@ -29,6 +29,11 @@ Route::group([
     })->middleware('client');
 
     /**
+     * ティーポット実装
+     */
+    Route::get('teapot',  'TeapotController');
+
+    /**
      * v1
      */
     Route::group([
