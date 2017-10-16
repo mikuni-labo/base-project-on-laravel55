@@ -3,8 +3,8 @@
 namespace App\Model;
 
 use App\Traits\ModelObservable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
@@ -71,6 +71,26 @@ class User extends Authenticatable
      * @var integer
      */
     protected $perPage = 10;
+
+    /**
+     * Define relationship with other model.
+     *
+     * @return BelongsToMany
+     */
+    public function followings(): BelongsToMany
+    {
+        return $this->belongsToMany(self::class, 'follows', 'user_id', 'followed_user_id')->withTimestamps();
+    }
+
+    /**
+     * Define relationship with other model.
+     *
+     * @return BelongsToMany
+     */
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(self::class, 'follows', 'followed_user_id', 'user_id')->withTimestamps();
+    }
 
     /**
      * Check the user role.
