@@ -63,5 +63,6 @@ Route::group([], function() {
         Route::get( 'render_mailable',   'RenderMailableController')->name('test.render_mailable');
         Route::get( 'notification',      'NotificationController')->name('test.notification');
         Route::get( 'qrcode',            'QrcodeController')->name('test.qrcode');
+        Route::get( 'pivot',             'PivotController')->name('test.pivot');
     });
 });
