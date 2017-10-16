@@ -33,17 +33,17 @@ class PivotController extends Controller
         /**
          * Attach
          */
-        if (! $user->followings()->wherePivot('followed_user_id', 4)->first()) {
-            $user->followings()->attach(4);
-        }
+//         if (! $user->followings()->wherePivot('followed_user_id', 3)->first()) {
+//             $user->followings()->aattach(3);
+//         }
 
         /**
          * Detach
          */
-        foreach ($user->followings()->get() as $User) {
+//         foreach ($user->followings()->get() as $User) {
 //             dd('in');
-            $user->followings()->detach($User->id);
-        }
+//             $user->followings()->detach($User->id);
+//         }
 
 //         $user->followings()->detach([2,3,4]);
 
