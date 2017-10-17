@@ -26,7 +26,7 @@ class HomeController extends Controller
      * @param Request $request
      * @return View
      */
-    public function __invoke(Request $request) : View
+    public function __invoke(Request $request): View
     {
         return view('home');
     }

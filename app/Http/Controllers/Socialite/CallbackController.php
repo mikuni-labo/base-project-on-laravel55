@@ -28,7 +28,7 @@ class CallbackController extends Controller
      * @param string $provider
      * @return View
      */
-    public function __invoke(Request $request, string $provider) : View
+    public function __invoke(Request $request, string $provider): View
     {
         dd( \Socialite::with($provider)->user() );
 

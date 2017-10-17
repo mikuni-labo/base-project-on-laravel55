@@ -22,7 +22,7 @@ class AuthRequest extends FormRequest
      * {@inheritDoc}
      * @see \Illuminate\Foundation\Http\FormRequest::attributes()
      */
-    public function attributes() : array
+    public function attributes(): array
     {
         return [
             'name'                  => 'ログイン名',

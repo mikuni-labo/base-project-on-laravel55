@@ -23,7 +23,7 @@ class PhpinfoController extends Controller
      * @param Request $request
      * @return void
      */
-    public function __invoke(Request $request) : void
+    public function __invoke(Request $request): void
     {
         phpinfo();
     }

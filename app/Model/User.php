@@ -142,7 +142,7 @@ class User extends Authenticatable
         /**
          * XXX ここはユーザ毎のフックURLにするべきかもしれないがテストのため一旦configから取得する
          */
-        return !empty(config('notification.slack.webhook_url')) ? config('notification.slack.webhook_url') : false;
+        return !empty(config('notification.slack.webhook_url')) ? config('notification.slack.webhook_url'): false;
     }
 
     /**

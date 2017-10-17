@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Passport;
+namespace App\Http\Controllers\Test;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,21 +15,18 @@ class IndexController extends Controller
      */
     public function __construct()
     {
-        parent::__construct();
-
         $this->middleware('auth');
     }
 
     /**
-     * Show the application dashboard.
+     * Render mailable test.
      *
-     * @method GET
-     * @param Request $request
+     * @param  Request $request
      * @return View
      */
     public function __invoke(Request $request): View
     {
-        return view('passport');
+        return view('test.index');
     }
 
 }

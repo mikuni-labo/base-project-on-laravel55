@@ -19,7 +19,7 @@ class ResendRequest extends AuthRequest
      *
      * @return boolean
      */
-    public function authorize() : bool
+    public function authorize(): bool
     {
         return true;
     }
@@ -29,7 +29,7 @@ class ResendRequest extends AuthRequest
      *
      * @return array
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [
             'email' => 'required|email|exists:users|max:191',
@@ -42,7 +42,7 @@ class ResendRequest extends AuthRequest
      * {@inheritDoc}
      * @see \Illuminate\Foundation\Http\FormRequest::messages()
      */
-    public function messages() : array
+    public function messages(): array
     {
         return [
             //
