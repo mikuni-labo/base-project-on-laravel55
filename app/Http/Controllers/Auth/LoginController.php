@@ -30,13 +30,6 @@ class LoginController extends Controller
     protected $decayMinutes = 20;
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo;
-
-    /**
      * Create a new controller instance.
      *
      * @return mixed
@@ -46,8 +39,16 @@ class LoginController extends Controller
         parent::__construct();
 
         $this->middleware('guest')->except('logout');
+    }
 
-        $this->redirectTo = route('home');
+    /**
+     * Where to redirect users after login.
+     *
+     * @return string
+     */
+    private function redirectTo()
+    {
+        return route('home');
     }
 
     /**
