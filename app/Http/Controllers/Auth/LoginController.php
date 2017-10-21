@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -45,5 +48,28 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
 
         $this->redirectTo = route('home');
+    }
+
+    /**
+     * Redirect the user after determining they are locked out.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function sendLockoutResponse(Request $request)
+    {
+        $seconds = $this->limiter()->availableIn(
+            $this->throttleKey($request)
+        );
+
+        throw ValidationException::withMessages([
+            $this->username() => [
+                Lang::get('auth.throttle', [
+                    'seconds' => $seconds,
+                    'minutes' => (int)($seconds / 60),
+                ]),
+            ],
+        ])->status(423);
     }
 }
