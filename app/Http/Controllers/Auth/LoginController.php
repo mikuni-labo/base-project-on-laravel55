@@ -68,7 +68,7 @@ class LoginController extends Controller
             $this->username() => [
                 Lang::get('auth.throttle', [
                     'seconds' => $seconds,
-                    'minutes' => (int)($seconds / 60),
+                    'minutes' => (int)($seconds / 60) + 1,
                 ]),
             ],
         ])->status(423);
