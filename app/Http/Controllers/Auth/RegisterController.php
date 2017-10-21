@@ -23,13 +23,6 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo;
-
-    /**
      * Create a new controller instance.
      *
      * @return mixed
@@ -39,8 +32,6 @@ class RegisterController extends Controller
         parent::__construct();
 
         $this->middleware('guest');
-
-        $this->redirectTo = route('home');
     }
 
     /**
@@ -49,12 +40,20 @@ class RegisterController extends Controller
      * @param  array $data
      * @return Validator
      */
-    protected function validator(array $data): Validator
+    private function validator(array $data): Validator
     {
         return \Validator::make($data, [
             'name'     => 'required|string|max:255',
             'email'    => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+        ],
+        [
+            //
+        ],
+        [
+            'name'     => 'ログイン名',
+            'email'    => 'メールアドレス',
+            'password' => 'パスワード',
         ]);
     }
 
@@ -64,7 +63,7 @@ class RegisterController extends Controller
      * @param  array $data
      * @return User
      */
-    protected function create(array $data): User
+    private function create(array $data): User
     {
         return User::create([
             'name'     => $data['name'],
@@ -72,4 +71,15 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    /**
+     * Where to redirect users after registration.
+     *
+     * @return string
+     */
+    private function redirectTo()
+    {
+        return route('home');
+    }
+
 }

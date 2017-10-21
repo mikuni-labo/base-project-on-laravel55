@@ -24,17 +24,10 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /** @var int */
-    protected $maxAttempts = 5;
+    private $maxAttempts = 5;
 
     /** @var int */
-    protected $decayMinutes = 20;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo;
+    private $decayMinutes = 20;
 
     /**
      * Create a new controller instance.
@@ -46,8 +39,6 @@ class LoginController extends Controller
         parent::__construct();
 
         $this->middleware('guest')->except('logout');
-
-        $this->redirectTo = route('home');
     }
 
     /**
@@ -57,7 +48,7 @@ class LoginController extends Controller
      * @return void
      * @throws \Illuminate\Validation\ValidationException
      */
-    protected function sendLockoutResponse(Request $request)
+    private function sendLockoutResponse(Request $request)
     {
         $seconds = $this->limiter()->availableIn(
             $this->throttleKey($request)
@@ -67,9 +58,20 @@ class LoginController extends Controller
             $this->username() => [
                 Lang::get('auth.throttle', [
                     'seconds' => $seconds,
-                    'minutes' => (int)($seconds / 60),
+                    'minutes' => (int)($seconds / 60) + 1,
                 ]),
             ],
         ])->status(423);
     }
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @return string
+     */
+    private function redirectTo()
+    {
+        return route('home');
+    }
+
 }
