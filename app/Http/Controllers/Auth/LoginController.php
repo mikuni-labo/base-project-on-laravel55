@@ -42,16 +42,6 @@ class LoginController extends Controller
     }
 
     /**
-     * Where to redirect users after login.
-     *
-     * @return string
-     */
-    private function redirectTo()
-    {
-        return route('home');
-    }
-
-    /**
      * Redirect the user after determining they are locked out.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -73,4 +63,15 @@ class LoginController extends Controller
             ],
         ])->status(423);
     }
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @return string
+     */
+    private function redirectTo()
+    {
+        return route('home');
+    }
+
 }
