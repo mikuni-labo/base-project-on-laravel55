@@ -23,6 +23,18 @@ Route::group([], function() {
      * Application Auth
      */
     Auth::routes();
+    Route::group([
+        'prefix'    => 'auth',
+        'namespace' => 'Auth',
+    ], function() {
+        Route::group([
+            'prefix'    => 'user',
+            'namespace' => 'User',
+        ], function() {
+            Route::get( '/',      'GetController')->name('auth.user');
+            Route::put( '/',      'ModifyController');
+        });
+    });
 
     /**
      * Passport

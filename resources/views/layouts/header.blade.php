@@ -52,12 +52,15 @@
                             <li role="separator" class="divider"></li>
 
                             <li><a href="{{ route('home') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;ホーム</a></li>
+                            <li>
+                                <auth-modify></auth-modify>
+                            </li>
                             <li><a href="{{ route('phpinfo') }}"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;phpinfo</a></li>
 
                             <li role="separator" class="divider"></li>
 
                             <li>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); if (confirm()) document.getElementById('logout-form').submit(); return false;">
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); if (confirm('ログアウトしますか？')) document.getElementById('logout-form').submit(); return false;">
                                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;ログアウト
                                 </a>
 
