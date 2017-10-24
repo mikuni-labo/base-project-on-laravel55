@@ -36,8 +36,13 @@ Vue.component(
 );
 
 Vue.component(
-    'test',
-    require('./components/Test.vue')
+    'auth-modify',
+    require('./components/auth/modify.vue')
+);
+
+Vue.component(
+    'example',
+    require('./components/Example.vue')
 );
 
 const app = new Vue({
