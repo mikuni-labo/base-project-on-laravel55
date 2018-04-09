@@ -1,6 +1,6 @@
 <?php
 
-use App\Model\User;
+use App\Model\Video;
 // use Faker\Generator as Faker;
 
 /*
@@ -14,15 +14,11 @@ use App\Model\User;
 |
 */
 
-$factory->define(User::class, function () {
-    static $password;
-
+$factory->define(Video::class, function () {
     $faker = \Faker\Factory::create('ja_JP');
 
     return [
-        'name'           => $faker->lastName . $faker->firstName,
-        'email'          => $faker->unique()->safeEmail,
-        'password'       => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'title' => $faker->title,
+        'url'   => $faker->url,
     ];
 });
