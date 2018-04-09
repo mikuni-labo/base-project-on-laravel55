@@ -49,6 +49,8 @@ class MorphController extends Controller
 //         dd($user->videos);
 //         dd($user->posts);
 //         dd($user->comments);
+
+        dd('end');
     }
 
     /**
