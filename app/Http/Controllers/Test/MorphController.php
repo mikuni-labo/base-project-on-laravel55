@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Test;
 use App\Http\Controllers\Controller;
 use App\Model\Comment;
 use App\Model\Post;
-use App\Model\Test;
+use App\Model\Tag;
 use App\Model\User;
 use App\Model\Video;
 use Illuminate\Http\Request;
@@ -34,14 +34,19 @@ class MorphController extends Controller
         $user = auth()->user();
 
         /**
-         * post投稿
+         * post,comment投稿
          */
-        $this->createPost($user);
+//         $this->testPosts($user);
 
         /**
-         * video投稿
+         * video,comment投稿
          */
-        $this->createVideo($user);
+//         $this->testVideos($user);
+
+        /**
+         * tag作成・付与
+         */
+        $this->testTags();
 
         /**
          * 検証
@@ -57,30 +62,29 @@ class MorphController extends Controller
      * @param  User $user
      * @return void
      */
-    private function createPost(User $user)
+    private function testPosts(User $user)
     {
-        if (! $user->posts) {
+        if ($user->posts->isEmpty()) {
 //             $user->posts()->save($model);//単体
             $user->posts()->saveMany([//複数
                 factory(Post::class)->make(),
-//                 new Comment([
+//                 new Post([
 //                     'title'   => 'Test title!',
 //                     'content' => 'Test content!',
 //                 ]),
             ]);
         } else foreach ($user->posts as $post) {
-//             dd($post->comments);
-
+            /**
+             * comment
+             */
             $post->comments()->saveMany([//複数
-                tap($comment = factory(Comment::class)->make(), function($comment) use ($user){
-                    return $comment->user_id = $user->id;// コメント筆者は別のリレーションなので、個別で必要
-                }),
+                factory(Comment::class)->make([
+                    'user_id' => $user->id,// コメント筆者は別のリレーションなので、個別で必要
+                ]),
 //                 new Comment([
 //                     'content' => 'Test content!',
 //                 ]),
             ]);
-
-//             dd($post->comments);
         }
     }
 
@@ -88,31 +92,61 @@ class MorphController extends Controller
      * @param  User $user
      * @return void
      */
-    private function createVideo(User $user)
+    private function testVideos(User $user)
     {
-        if (! $user->videos) {
+        if ($user->videos->isEmpty()) {
 //             $user->videos()->save($model);//単体
             $user->videos()->saveMany([//複数
                 factory(Video::class)->make(),
-//                 new Comment([
+//                 new Video([
 //                     'title'   => 'Test title!',
 //                     'url'   => 'Http://test.com/test.jpg',
 //                 ]),
             ]);
         } else foreach ($user->videos as $video) {
-//             dd($video->comments);
-
+            /**
+             * comment
+             */
             $video->comments()->saveMany([//複数
-                tap($comment = factory(Comment::class)->make(), function($comment) use ($user){
-                    return $comment->user_id = $user->id;// コメント筆者は別のリレーションなので、個別で必要
-                }),
+                factory(Comment::class)->make([
+                    'user_id' => $user->id,// コメント筆者は別のリレーションなので、個別で必要
+                ]),
 //                 new Comment([
 //                     'content' => 'Test content!',
 //                 ]),
-                ]);
-
-//             dd($video->comments);
+            ]);
         }
+    }
+
+    /**
+     * @return void
+     */
+    private function testTags()
+    {
+        $post1 = Post::find(1);
+        $post2 = Post::find(2);
+
+        $video1 = Video::find(1);
+        $video2 = Video::find(2);
+
+        $tag1  = Tag::find(1);
+        $tag2  = Tag::find(2);
+
+        /**
+         * syncメソッド最高！！
+         */
+        $post1->tags()->sync([
+            $tag1->id,
+            $tag2->id,
+        ]);
+
+        /**
+         * 存在しているIDを削除したくない場合は、syncWithoutDetachingメソッドを使用することも可能
+         */
+        $video1->tags()->syncWithoutDetaching([
+            $tag1->id,
+//             $tag2->id,
+        ]);
     }
 
 }

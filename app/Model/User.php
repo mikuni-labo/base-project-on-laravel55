@@ -24,8 +24,6 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',// TODO 複数代入しないよう検討するべき
-        'role',    // TODO 複数代入しないよう検討するべき
     ];
 
     /**

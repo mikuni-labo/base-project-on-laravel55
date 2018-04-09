@@ -47,9 +47,28 @@ class Comment extends Model
     ];
 
     /**
+     * Touch all relations.
+     *
+     * @var array
+     */
+    protected $touches = [
+        'commentable',
+    ];
+
+    /**
      * @var integer
      */
 //     protected $perPage = 20;
+
+    /**
+     * Define relationship with other model.
+     *
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * Define relationship with other model.

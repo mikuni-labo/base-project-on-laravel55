@@ -3,10 +3,10 @@
 namespace App\Model;
 
 use App\Traits\ModelObservable;
-use Illuminate\Database\Eloquent\Relations\{BelongsTo,MorphMany,MorphToMany};
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\{Model,SoftDeletes};
 
-class Video extends Model
+class Tag extends Model
 {
     use ModelObservable, SoftDeletes;
 
@@ -16,8 +16,7 @@ class Video extends Model
      * @var array
      */
     protected $fillable = [
-        'title',
-        'url',
+        'name',
     ];
 
     /**
@@ -44,8 +43,17 @@ class Video extends Model
      * @var array
      */
     protected $casts = [
-        'title'  => 'string',
-        'url'    => 'string',
+        'name' => 'string',
+    ];
+
+    /**
+     * Touch all relations.
+     *
+     * @var array
+     */
+    protected $touches = [
+        'posts',
+        'videos',
     ];
 
     /**
@@ -56,21 +64,11 @@ class Video extends Model
     /**
      * Define relationship with other model.
      *
-     * @return BelongsTo
+     * @return MorphToMany
      */
-    public function user(): BelongsTo
+    public function posts(): MorphToMany
     {
-        return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Define relationship with other model.
-     *
-     * @return MorphMany
-     */
-    public function comments(): MorphMany
-    {
-        return $this->morphMany(Comment::class, 'commentable');
+        return $this->morphedByMany(Post::class, 'taggable')->withTimestamps();
     }
 
     /**
@@ -78,9 +76,9 @@ class Video extends Model
      *
      * @return MorphToMany
      */
-    public function tags(): MorphToMany
+    public function videos(): MorphToMany
     {
-        return $this->morphToMany(Tag::class, 'taggable')->withTimestamps();
+        return $this->morphedByMany(Video::class, 'taggable')->withTimestamps();
     }
 
 }

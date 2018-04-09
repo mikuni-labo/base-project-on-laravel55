@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use App\Traits\ModelObservable;
-use Illuminate\Database\Eloquent\Relations\{BelongsTo,MorphMany};
+use Illuminate\Database\Eloquent\Relations\{BelongsTo,MorphMany,MorphToMany};
 use Illuminate\Database\Eloquent\{Model,SoftDeletes};
 
 class Post extends Model
@@ -71,6 +71,16 @@ class Post extends Model
     public function comments(): MorphMany
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    /**
+     * Define relationship with other model.
+     *
+     * @return MorphToMany
+     */
+    public function tags(): MorphToMany
+    {
+        return $this->morphToMany(Tag::class, 'taggable')->withTimestamps();
     }
 
 }
