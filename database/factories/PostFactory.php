@@ -1,7 +1,7 @@
 <?php
 
 use App\Model\Post;
-// use Faker\Generator as Faker;
+use Faker\Generator as Faker;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +14,7 @@ use App\Model\Post;
 |
 */
 
-$factory->define(Post::class, function () {
-    $faker = \Faker\Factory::create('ja_JP');
-
+$factory->define(Post::class, function (Faker $faker) {
     return [
         'title'   => $faker->title,
         'content' => $faker->realText,

@@ -1,7 +1,7 @@
 <?php
 
 use App\Model\Comment;
-// use Faker\Generator as Faker;
+use Faker\Generator as Faker;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +14,7 @@ use App\Model\Comment;
 |
 */
 
-$factory->define(Comment::class, function () {
-    $faker = \Faker\Factory::create('ja_JP');
-
+$factory->define(Comment::class, function (Faker $faker) {
     return [
         'content' => $faker->realText,
     ];

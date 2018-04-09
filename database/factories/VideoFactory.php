@@ -1,7 +1,7 @@
 <?php
 
 use App\Model\Video;
-// use Faker\Generator as Faker;
+use Faker\Generator as Faker;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +14,7 @@ use App\Model\Video;
 |
 */
 
-$factory->define(Video::class, function () {
-    $faker = \Faker\Factory::create('ja_JP');
-
+$factory->define(Video::class, function (Faker $faker) {
     return [
         'title' => $faker->title,
         'url'   => $faker->url,

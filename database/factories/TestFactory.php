@@ -1,7 +1,7 @@
 <?php
 
 use App\Model\Test;
-// use Faker\Generator as Faker;
+use Faker\Generator as Faker;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +14,7 @@ use App\Model\Test;
 |
 */
 
-$factory->define(Test::class, function () {
-    $faker = \Faker\Factory::create('ja_JP');
-
+$factory->define(Test::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'password' => $faker->password,
