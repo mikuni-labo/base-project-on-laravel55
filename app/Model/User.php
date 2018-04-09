@@ -4,7 +4,7 @@ namespace App\Model;
 
 use App\Traits\ModelObservable;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\{BelongsToMany,HasMany};
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
@@ -17,13 +17,6 @@ class User extends Authenticatable
     use SoftDeletes, Notifiable, HasApiTokens, ModelObservable;
 
     /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'users';
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -31,8 +24,6 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',// TODO 複数代入しないよう検討するべき
-        'role',    // TODO 複数代入しないよう検討するべき
     ];
 
     /**
@@ -51,9 +42,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        //
     ];
 
     /**
@@ -70,7 +59,7 @@ class User extends Authenticatable
     /**
      * @var integer
      */
-    protected $perPage = 10;
+    protected $perPage = 20;
 
     /**
      * Define relationship with other model.
@@ -90,6 +79,36 @@ class User extends Authenticatable
     public function followers(): BelongsToMany
     {
         return $this->belongsToMany(self::class, 'follows', 'followed_user_id', 'user_id')->withTimestamps();
+    }
+
+    /**
+     * Define relationship with other model.
+     *
+     * @return HasMany
+     */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    /**
+     * Define relationship with other model.
+     *
+     * @return HasMany
+     */
+    public function videos(): HasMany
+    {
+        return $this->hasMany(Video::class);
+    }
+
+    /**
+     * Define relationship with other model.
+     *
+     * @return HasMany
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);//postもvideoも込み
     }
 
     /**

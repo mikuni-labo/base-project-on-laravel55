@@ -78,5 +78,7 @@ Route::group([], function() {
         Route::get( 'notification',      'NotificationController')->name('test.notification');
         Route::get( 'qrcode',            'QrcodeController')->name('test.qrcode');
         Route::get( 'pivot',             'PivotController')->name('test.pivot');
+        Route::get( 'morph',             'MorphController')->name('test.morph');
+
     });
 });

@@ -93,6 +93,15 @@ return [
 
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'ja'),
 
+
+    /*
+     |--------------------------------------------------------------------------
+     | Faker Locale Setting
+     |--------------------------------------------------------------------------
+     */
+
+    'faker_locale' => env('DEV_FAKER_LOCALE', 'ja_JP'),
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
@@ -176,6 +185,7 @@ return [
         App\Providers\AuthServiceProvider::class,
 //         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\EloquentServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\LocalServiceProvider::class,
         App\Providers\BladeServiceProvider::class,
