@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Listeners\SlackNotification;
+use App\Listeners\TestNotificationListener;
 use App\Events\TestEvent;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -21,7 +21,7 @@ class EventServiceProvider extends ServiceProvider
          * テスト通知
          */
         TestEvent::class => [
-            SlackNotification::class,
+            TestNotificationListener::class,
         ],
 
         /**
