@@ -35,10 +35,10 @@ Vue.component(
     require('./components/passport/PersonalAccessTokens.vue')
 );
 
-Vue.component(
-    'auth-modify',
-    require('./components/auth/modify.vue')
-);
+//Vue.component(
+//    'auth-modify',
+//    require('./components/auth/modify.vue')
+//);
 
 Vue.component(
     'example',

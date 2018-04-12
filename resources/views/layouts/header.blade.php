@@ -42,7 +42,9 @@
                 <li class="dropdown">
                     @auth
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
+                            <span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;{{ Auth::user()->name }}
+                            @if($cnt = Auth::user()->unreadNotifications->count()) <span class="badge bg-danger">{{ $cnt }}</span> @endif
+                            &nbsp;<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-header">
