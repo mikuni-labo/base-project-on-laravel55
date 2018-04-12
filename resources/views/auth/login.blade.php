@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-primary">
-                    <div class="panel-heading lead"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;ログイン</div>
+                    <div class="panel-heading lead"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;ログイン</div>
                     <div class="panel-body">
                         {!! Form::open(['url' => route('login'), 'method' => 'post', 'class' => 'form-horizontal']) !!}
 

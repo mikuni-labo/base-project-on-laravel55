@@ -94,7 +94,8 @@ class TestNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'test通知です',
+            'title'   => 'test',
+            'content' => 'test通知です',
         ];
     }
 }
