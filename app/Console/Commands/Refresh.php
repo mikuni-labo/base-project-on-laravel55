@@ -11,14 +11,14 @@ class Refresh extends Command
      *
      * @var string
      */
-    protected $signature = 'refresh';
+    protected $signature = 'refresh {--c|cache : Cache again after deleting.}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Done refresh commands.';
+    protected $description = 'Execute the refresh commands.';
 
     /**
      * Create a new command instance.
@@ -38,10 +38,18 @@ class Refresh extends Command
     public function handle()
     {
         $this->comment('Refreshing...');
-        $this->call('config:cache');
-        $this->call('route:cache');
-        $this->call('view:clear');
         $this->call('clear-compiled');
-        $this->comment('Done refresh commands!');
+        $this->call('cache:clear');
+
+        if ($this->option('cache')) {
+            $this->call('config:cache');
+            $this->call('route:cache');
+        } else {
+            $this->call('config:clear');
+            $this->call('route:clear');
+        }
+
+        $this->call('view:clear');
+        $this->comment('Refresh commands executed!');
     }
 }

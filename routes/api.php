@@ -22,11 +22,11 @@ Route::group([
     /**
      * テスト用のクライアント認証ミドルウェアを試すエンドポイント（いずれ削除）
      */
-    Route::get('client', function () {
-        return response()->json([
-            'result' => true,
-        ]);
-    })->middleware('client');
+//     Route::get('client', function () {
+//         return response()->json([
+//             'result' => true,
+//         ]);
+//     })->middleware('client');
 
     /**
      * ティーポット実装
