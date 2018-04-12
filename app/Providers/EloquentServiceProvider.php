@@ -16,6 +16,7 @@ class EloquentServiceProvider extends ServiceProvider
     {
         Relation::morphMap([
             'post'  => \App\Model\Post::class,
+            'user'  => \App\Model\User::class,
             'video' => \App\Model\Video::class,
         ]);
     }

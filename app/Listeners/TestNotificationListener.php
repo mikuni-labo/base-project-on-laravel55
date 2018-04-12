@@ -6,7 +6,7 @@ use App\Events\TestEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SlackNotification
+class TestNotificationListener implements ShouldQueue
 {
     /**
      * Create the event listener.

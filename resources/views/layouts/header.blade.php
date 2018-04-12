@@ -28,7 +28,7 @@
                 @if( Auth::check() )
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;メニュー&nbsp;<span class="caret"></span>
+                            メニュー&nbsp;<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('passport') }}"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span>&nbsp;パスポート管理</a></li>
@@ -39,29 +39,55 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
+                @auth
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            @if($cnt = Auth::user()->unreadNotifications->count())
+                                <span class="badge bg-danger">{{ $cnt }}</span>
+                            @else
+                                <span class="badge bg-info"><i class="fa fa-info" aria-hidden="true"></i></span>
+                            @endif
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            @forelse (Auth::user()->notifications as $notification)
+                                <li><a>{{ $notification->data['title'] }}
+                                    @if ($notification->unread()) <span class="badge bg-danger">未</span> @endif
+                                </a></li>
+                            @empty
+                                <li><a>通知がありません</a></li>
+                            @endforelse
+
+                            <li role="separator" class="divider"></li>
+                            <li><a>通知の管理</a></li>
+                        </ul>
+                    </li>
+                @endauth
+
                 <li class="dropdown">
                     @auth
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
+                            {{ Auth::user()->name }}&nbsp;<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-header">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;{{ Auth::user()->name }}（{{ config('fixture.user_role')[Auth::user()->role] }}）としてログインしています。
+                                <i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{ Auth::user()->name }}（{{ config('fixture.user_role')[Auth::user()->role] }}）としてログインしています。
                             </li>
 
                             <li role="separator" class="divider"></li>
 
-                            <li><a href="{{ route('home') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;ホーム</a></li>
+                            <li><a href="{{ route('home') }}"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;ホーム</a></li>
                             <li>
                                 <auth-modify></auth-modify>
                             </li>
-                            <li><a href="{{ route('phpinfo') }}"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;phpinfo</a></li>
+                            <li><a href="{{ route('phpinfo') }}"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;phpinfo</a></li>
 
                             <li role="separator" class="divider"></li>
 
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); if (confirm('ログアウトしますか？')) document.getElementById('logout-form').submit(); return false;">
-                                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;ログアウト
+                                    <i class="fa fa-power-off" aria-hidden="true"></i>&nbsp;ログアウト
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -71,11 +97,11 @@
                         </ul>
                     @else
                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;GUEST <span class="caret"></span>
+                            GUEST <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;ログイン</a></li>
-                            <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;アカウント登録</a></li>
+                            <li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;ログイン</a></li>
+                            <li><a href="{{ route('register') }}"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;アカウント登録</a></li>
                         </ul>
                     @endguest
                 </li>

@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Notifications\Channels\CustomDatabaseChannel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,6 +11,13 @@ use Illuminate\Notifications\Messages\{MailMessage,SlackMessage};
 class TestNotification extends Notification
 {
     use Queueable;
+
+    /**
+     * Notifications type.
+     *
+     * @var string
+     */
+    public $type = 'test';
 
     /**
      * Create a new notification instance.
@@ -30,11 +38,12 @@ class TestNotification extends Notification
     public function via($notifiable)
     {
         return [
+            CustomDatabaseChannel::class,
 //             'mail',
 //             'database',
 //             'broadcast',
 //             'nexmo',
-            'slack',
+//             'slack',
         ];
     }
 
@@ -62,9 +71,9 @@ class TestNotification extends Notification
         return (new SlackMessage)
             ->error()
             ->from('MikunilaboApp', ':ghost:')
-            ->to('#laravel')
+            ->to('#laravel_logs')
             // ->image(':yousan:')// 画像アイコン？
-            ->content('Whoops! Something went wrong. to #laravel')
+            ->content('Whoops! Something went wrong.')
             ->attachment(function ($attachment) {
                 $attachment->title('Invoice 1322', url('/'))
                 ->fields([
@@ -85,7 +94,8 @@ class TestNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'title'   => 'test',
+            'content' => 'test通知です',
         ];
     }
 }
