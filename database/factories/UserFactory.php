@@ -20,6 +20,7 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'name'           => $faker->lastName . $faker->firstName,
         'email'          => $faker->unique()->safeEmail,
+        'role'           => $faker->randomElement(array_keys(config('fixture.user_role'))),
         'password'       => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
