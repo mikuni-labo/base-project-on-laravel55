@@ -16,31 +16,32 @@ class UsersTableSeeder extends Seeder
         User::truncate();
         Schema::enableForeignKeyConstraints();
 
-        User::create([
+        factory(User::class)->create([
             'name'         => config('fixture.user_role.master'),
             'role'         => 'master',
             'email'        => 'k-wada@mikunilabo.com',
-            'password'     => bcrypt('p1p1p1p1'),
+            'password'     => bcrypt(config('database.connections.mysql.password')),
         ]);
 
-        User::create([
+        factory(User::class)->create([
             'name'         => config('fixture.user_role.company-admin'),
             'role'         => 'company-admin',
             'email'        => 'redbull.816.com@gmail.com',
-            'password'     => bcrypt('p1p1p1p1'),
+            'password'     => bcrypt(config('database.connections.mysql.password')),
         ]);
 
-        User::create([
+        factory(User::class)->create([
             'name'         => config('fixture.user_role.store-admin'),
             'role'         => 'store-admin',
             'email'        => 'red.bull.816.com@gmail.com',
-            'password'     => bcrypt('p1p1p1p1'),
+            'password'     => bcrypt(config('database.connections.mysql.password')),
         ]);
 
-        User::create([
+        factory(User::class)->create([
             'name'         => config('fixture.user_role.store-user'),
+            'role'         => 'store-user',
             'email'        => 're.d.bull.816.com@gmail.com',
-            'password'     => bcrypt('p1p1p1p1'),
+            'password'     => bcrypt(config('database.connections.mysql.password')),
         ]);
     }
 }
