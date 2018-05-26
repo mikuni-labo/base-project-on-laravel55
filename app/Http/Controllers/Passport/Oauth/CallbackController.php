@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Passport\Oauth;
 
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
-use Illuminate\Http\{RedirectResponse, Request};
-use Illuminate\View\View;
+use Illuminate\Http\Request;
 
 class CallbackController extends Controller
 {
@@ -16,7 +15,7 @@ class CallbackController extends Controller
      */
     public function __construct()
     {
-        parent::__construct();
+        //
     }
 
     /**

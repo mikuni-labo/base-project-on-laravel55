@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Test;
 
 use App\Http\Controllers\Controller;
-use App\Model\User;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class PivotController extends Controller
 {

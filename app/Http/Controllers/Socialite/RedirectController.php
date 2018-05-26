@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Socialite;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{RedirectResponse,Request};
-use Illuminate\View\View;
 
 class RedirectController extends Controller
 {
@@ -15,8 +14,6 @@ class RedirectController extends Controller
      */
     public function __construct()
     {
-        parent::__construct();
-
         $this->middleware('guest');
     }
 
