@@ -79,5 +79,7 @@ Route::group([], function() {
         Route::get( 'qrcode',            'QrcodeController');
         Route::get( 'pivot',             'PivotController');
         Route::get( 'morph',             'MorphController');
+        Route::get( 'carbon',            'CarbonController');
+        Route::get( 'collection',        'CollectionController');
     });
 });
