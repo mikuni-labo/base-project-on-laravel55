@@ -83,5 +83,6 @@ Route::group([], function() {
         Route::get( 'collection',        'CollectionController');
         Route::get( 'exception',         'ExceptionController');
         Route::get( 'helper',            'HelperController');
+        Route::get( 'php7',              'Php7Controller');
     });
 });
