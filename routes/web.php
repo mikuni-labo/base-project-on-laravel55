@@ -81,5 +81,6 @@ Route::group([], function() {
         Route::get( 'morph',             'MorphController');
         Route::get( 'carbon',            'CarbonController');
         Route::get( 'collection',        'CollectionController');
+        Route::get( 'exception',         'ExceptionController');
     });
 });
