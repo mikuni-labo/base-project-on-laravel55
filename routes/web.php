@@ -82,5 +82,6 @@ Route::group([], function() {
         Route::get( 'carbon',            'CarbonController');
         Route::get( 'collection',        'CollectionController');
         Route::get( 'exception',         'ExceptionController');
+        Route::get( 'helper',            'HelperController');
     });
 });
