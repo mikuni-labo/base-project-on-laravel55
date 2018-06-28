@@ -22,35 +22,23 @@ class RelationController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $query = Post::query();
-        $query->select([
-            'posts.*',
-            'comments.updated_at as c_max_updated_at',
-        ]);
+        $query = Post::query()
+            ->select([
+                'posts.*',
+                \DB::raw('max(comments.updated_at) as c_max'),
+            ])
+            ->leftJoin('comments', function($join) {
+                $join->on('posts.id', '=', 'comments.commentable_id');
+            })
+            ->where('posts.user_id', auth()->user()->id)
+            ->where('comments.commentable_type', 'post')
+            ->whereNull('comments.deleted_at')
+            ->groupBy('comments.commentable_id')
+            ->latest('c_max');
 
-        $query->leftJoin('comments', function($join) {
-            $join->on('posts.id', '=', 'comments.commentable_id');
-        });
+//         dd( $query->toSql() );
 
-        $query->where('posts.user_id', auth()->user()->id);
-        $query->where('comments.commentable_type', 'post');
-
-        $query->whereIn('comments.updated_at', function($q) {
-            $q->select( \DB::raw('
-                c_max_updated_at FROM (
-                    SELECT MAX(t1.`updated_at`) AS c_max_updated_at
-                    FROM `comments` AS t1
-                    GROUP BY t1.`commentable_id`
-                ) AS t2
-            '));
-        });
-
-        $query->latest('c_max_updated_at');
-
-        $res = $query->get();
-
-//
-        dd( $res->toArray() );
+        dd( $query->get()->toArray() );
     }
 
 }
