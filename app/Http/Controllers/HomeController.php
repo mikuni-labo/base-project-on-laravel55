@@ -14,59 +14,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        parent::__construct();
-
-        factory(\App\Model\Test::class)->create([
-            'bigInteger' => 1234567890123456789,
-            'binary' => 'test',
-            'boolean' => false,
-            'char' => 'test',
-            'date' => now(),
-            'dateTime' => now(),
-            'dateTimeTz' => now(),
-            'decimal' => 12345678.01,
-//             'double',
-//             'enum' => 'hard',
-//             'float',
-//             'geometry',
-//             'geometryCollection',
-//             'integer',
-//             'ipAddress',
-//             'json',
-//             'jsonb',
-//             'lineString',
-//             'longText',
-//             'macAddress',
-//             'mediumInteger',
-//             'mediumText',
-//             'morphs',
-//             'multiLineString',
-//             'multiPoint',
-//             'multiPolygon',
-//             'nullableMorphs',
-//             'point',
-//             'polygon',
-//             'remember_token',
-//             'smallInteger',
-//             'deleted_at',
-//             'string',
-//             'text',
-//             'time',
-//             'timeTz',
-//             'timestamp',
-//             'timestampTz',
-//             'created_at',
-//             'updated_at',
-//             'tinyInteger',
-//             'unsignedBigInteger',
-//             'unsignedDecimal',
-//             'unsignedInteger',
-//             'unsignedMediumInteger',
-//             'unsignedSmallInteger',
-//             'unsignedTinyInteger',
-//             'uuid',
-        ]);
-
         $this->middleware('auth');
     }
 

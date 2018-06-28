@@ -16,6 +16,8 @@ class LoginTest extends DuskTestCase
      */
     public function testExample()
     {
+        $this->assertTrue(true);
+
 //         $user = User::find(1);
 
 //         $this->browse(function ($browser) use ($user) {

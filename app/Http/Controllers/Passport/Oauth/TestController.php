@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Passport\Oauth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{RedirectResponse, Request};
-use Illuminate\View\View;
 
 class TestController extends Controller
 {
@@ -15,8 +14,6 @@ class TestController extends Controller
      */
     public function __construct()
     {
-        parent::__construct();
-
         $this->middleware('auth');
     }
 

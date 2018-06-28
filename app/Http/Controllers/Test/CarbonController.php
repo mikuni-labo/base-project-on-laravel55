@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Test;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class QrcodeController extends Controller
+class CarbonController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,23 +19,18 @@ class QrcodeController extends Controller
     }
 
     /**
-     * Render mailable test.
+     * Any test.
      *
      * @param Request $request
      * @return mixed
      */
     public function __invoke(Request $request)
     {
-        $url = route('home');
+        /** @var Carbon $carbon */
+        $carbon = Carbon::parse('2018-05-26');
 
-//         print_r( \QrCode::size(100)->generate($url) );exit;
+//         dd($carbon->startOfDay()->format('Y-m-d H:i:s') === '2018-05-26 00:00:00');
 
-        print_r( \QrCode::size(200)->wifi([
-            'encryption' => 'WPA/WEP',
-            'ssid' => 'Your SSID',
-            'password' => 'Your Password',
-            'hidden' => 'Whether the network is a hidden SSID or not.'
-        ]) );exit;
+        dd($carbon->endOfDay()->format('Y-m-d H:i:s') === '2018-05-26 23:59:59');
     }
-
 }

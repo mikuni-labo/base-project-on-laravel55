@@ -73,12 +73,16 @@ Route::group([], function() {
         'namespace' => 'Test',
     ], function() {
         Route::get( '/',                 'IndexController')->name('test');
-        Route::get( 'vue',               'VueController')->name('test.vue');
-        Route::get( 'render_mailable',   'RenderMailableController')->name('test.render_mailable');
-        Route::get( 'notification',      'NotificationController')->name('test.notification');
-        Route::get( 'qrcode',            'QrcodeController')->name('test.qrcode');
-        Route::get( 'pivot',             'PivotController')->name('test.pivot');
-        Route::get( 'morph',             'MorphController')->name('test.morph');
-
+        Route::get( 'vue',               'VueController');
+        Route::get( 'render_mailable',   'RenderMailableController');
+        Route::get( 'notification',      'NotificationController');
+        Route::get( 'qrcode',            'QrcodeController');
+        Route::get( 'pivot',             'PivotController');
+        Route::get( 'morph',             'MorphController');
+        Route::get( 'carbon',            'CarbonController');
+        Route::get( 'collection',        'CollectionController');
+        Route::get( 'exception',         'ExceptionController');
+        Route::get( 'helper',            'HelperController');
+        Route::get( 'php7',              'Php7Controller');
     });
 });
