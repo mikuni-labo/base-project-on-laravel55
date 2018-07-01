@@ -36,12 +36,12 @@ class MorphController extends Controller
         /**
          * post,comment投稿
          */
-//         $this->testPosts($user);
+        $this->testPosts($user);
 
         /**
          * video,comment投稿
          */
-//         $this->testVideos($user);
+        $this->testVideos($user);
 
         /**
          * tag作成・付与
@@ -123,6 +123,9 @@ class MorphController extends Controller
      */
     private function testTags()
     {
+//         factory(Tag::class, 3)->create();
+//         return ;
+
         $post1 = Post::find(1);
         $post2 = Post::find(2);
 
@@ -136,6 +139,11 @@ class MorphController extends Controller
          * syncメソッド最高！！
          */
         $post1->tags()->sync([
+            $tag1->id,
+            $tag2->id,
+        ]);
+
+        $video1->tags()->sync([
             $tag1->id,
             $tag2->id,
         ]);
