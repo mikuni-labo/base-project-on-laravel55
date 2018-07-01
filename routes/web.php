@@ -85,5 +85,18 @@ Route::group([], function() {
         Route::get( 'helper',            'HelperController');
         Route::get( 'php7',              'Php7Controller');
         Route::get( 'relation',          'RelationController');
+
+        /**
+         * デザインパターン学習
+         */
+        $prefix = 'design_pattern';
+        Route::group([
+            'prefix'    => 'design_pattern',
+            'namespace' => studly_case($prefix),
+        ], function() {
+            Route::get( 'iterator',      'IteratorController');
+            Route::get( 'iterator2',     'Iterator2Controller');
+        });
     });
+
 });
