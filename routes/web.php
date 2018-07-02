@@ -94,10 +94,14 @@ Route::group([], function() {
             'prefix'    => $prefix,
             'namespace' => studly_case($prefix),
         ], function() {
+
+            /**
+             * イテレータパターン
+             */
             $prefix = 'iterator';
             Route::group([
                 'prefix'    => $prefix,
-                'namespace' => studly_case($prefix),
+                'namespace' => studly_case($prefix) . 'Pattern',
             ], function() {
                 Route::get( '1',     'IteratorController');
                 Route::get( '2',     'Iterator2Controller');
