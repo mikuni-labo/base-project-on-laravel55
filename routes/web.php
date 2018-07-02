@@ -91,11 +91,18 @@ Route::group([], function() {
          */
         $prefix = 'design_pattern';
         Route::group([
-            'prefix'    => 'design_pattern',
+            'prefix'    => $prefix,
             'namespace' => studly_case($prefix),
         ], function() {
-            Route::get( 'iterator',      'IteratorController');
-            Route::get( 'iterator2',     'Iterator2Controller');
+            $prefix = 'iterator';
+            Route::group([
+                'prefix'    => $prefix,
+                'namespace' => studly_case($prefix),
+            ], function() {
+                Route::get( '1',     'IteratorController');
+                Route::get( '2',     'Iterator2Controller');
+            });
+
         });
     });
 

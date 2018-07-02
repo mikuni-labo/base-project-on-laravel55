@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Test\DesignPattern;
+namespace App\Http\Controllers\Test\DesignPattern\Iterator;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
