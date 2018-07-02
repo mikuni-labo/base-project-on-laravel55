@@ -107,6 +107,17 @@ Route::group([], function() {
                 Route::get( '2',     'Iterator2Controller');
             });
 
+            /**
+             * プロトタイプパターン
+             */
+            $prefix = 'prototype';
+            Route::group([
+                'prefix'    => $prefix,
+                'namespace' => studly_case($prefix) . 'Pattern',
+            ], function() {
+                Route::get( '1',     'PrototypeController');
+            });
+
         });
     });
 
