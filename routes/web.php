@@ -118,6 +118,17 @@ Route::group([], function() {
                 Route::get( '1',     'PrototypeController');
             });
 
+            /**
+             * シングルトンパターン
+             */
+            $prefix = 'singleton';
+            Route::group([
+                'prefix'    => $prefix,
+                'namespace' => studly_case($prefix) . 'Pattern',
+            ], function() {
+                Route::get( '1',     'SingletonController');
+            });
+
         });
     });
 
