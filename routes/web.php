@@ -85,6 +85,7 @@ Route::group([], function() {
         Route::get( 'helper',            'HelperController');
         Route::get( 'php7',              'Php7Controller');
         Route::get( 'relation',          'RelationController');
+        Route::get( 'cache',             'CacheController');
 
         /**
          * デザインパターン学習
