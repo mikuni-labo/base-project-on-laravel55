@@ -85,5 +85,51 @@ Route::group([], function() {
         Route::get( 'helper',            'HelperController');
         Route::get( 'php7',              'Php7Controller');
         Route::get( 'relation',          'RelationController');
+
+        /**
+         * デザインパターン学習
+         */
+        $prefix = 'design_pattern';
+        Route::group([
+            'prefix'    => $prefix,
+            'namespace' => studly_case($prefix),
+        ], function() {
+
+            /**
+             * イテレータパターン
+             */
+            $prefix = 'iterator';
+            Route::group([
+                'prefix'    => $prefix,
+                'namespace' => studly_case($prefix) . 'Pattern',
+            ], function() {
+                Route::get( '1',     'IteratorController');
+                Route::get( '2',     'Iterator2Controller');
+            });
+
+            /**
+             * プロトタイプパターン
+             */
+            $prefix = 'prototype';
+            Route::group([
+                'prefix'    => $prefix,
+                'namespace' => studly_case($prefix) . 'Pattern',
+            ], function() {
+                Route::get( '1',     'PrototypeController');
+            });
+
+            /**
+             * シングルトンパターン
+             */
+            $prefix = 'singleton';
+            Route::group([
+                'prefix'    => $prefix,
+                'namespace' => studly_case($prefix) . 'Pattern',
+            ], function() {
+                Route::get( '1',     'SingletonController');
+            });
+
+        });
     });
+
 });
