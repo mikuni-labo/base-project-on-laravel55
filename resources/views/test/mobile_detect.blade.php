@@ -18,6 +18,18 @@
                     <div class="alert alert-danger">Unknown device.</div>
                 @endif
             </div>
+
+            <div class="col-md-12">
+                <div class="well well-sm">
+                    <code>{{ \Agent::platform() }}</code>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="well well-sm">
+                    <code>{{ \Agent::browser() }}</code>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
