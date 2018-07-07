@@ -10,8 +10,12 @@
             <div class="col-md-12">
                 @if (\Agent::isMobile())
                     <div class="alert alert-success">Is mobile.</div>
+                @elseif (\Agent::isTablet())
+                    <div class="alert alert-warning">Is tablet.</div>
+                @elseif (\Agent::isDesktop())
+                    <div class="alert alert-info">Is desktop.</div>
                 @else
-                    <div class="alert alert-info">Not mobile.</div>
+                    <div class="alert alert-danger">Unknown device.</div>
                 @endif
             </div>
         </div>
