@@ -86,6 +86,7 @@ Route::group([], function() {
         Route::get( 'php7',              'Php7Controller');
         Route::get( 'relation',          'RelationController');
         Route::get( 'cache',             'CacheController');
+        Route::get( 'mobile_detect',     'MobileDetectController');
 
         /**
          * デザインパターン学習
