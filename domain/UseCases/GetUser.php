@@ -22,14 +22,22 @@ class GetUser
      */
     public function excute()
     {
-        return $this->transaction(function () {
-            try {
-                auth()->user()->update(['name' => '管理者1']);
-                return 'ok';
-            } catch (\Exception $e) {
-                return $e;
-            }
-        });
+        try {
+            $this->transaction(function () {
+                auth()->user()->update([
+                    'name' => 'test管理者',// ok
+                ]);
+
+                auth()->user()->update([
+                    'name' => null,// error
+                ]);
+            });
+            $msg = 'ok';
+        } catch (\Exception $e) {
+            $msg = $e;
+        } finally {
+            return $msg;
+        }
 
     }
 
