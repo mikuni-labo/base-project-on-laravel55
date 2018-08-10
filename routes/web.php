@@ -87,6 +87,7 @@ Route::group([], function() {
         Route::get( 'relation',          'RelationController');
         Route::get( 'cache',             'CacheController');
         Route::get( 'mobile_detect',     'MobileDetectController');
+        Route::get( 'ddd',               'DomainDrivenDesignController');
 
         /**
          * デザインパターン学習
