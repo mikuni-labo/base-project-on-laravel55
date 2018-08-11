@@ -88,6 +88,7 @@ Route::group([], function() {
         Route::get( 'cache',             'CacheController');
         Route::get( 'mobile_detect',     'MobileDetectController');
         Route::get( 'ddd',               'DomainDrivenDesignController');
+        Route::get( 'pdf',               'PdfController');
 
         /**
          * デザインパターン学習
