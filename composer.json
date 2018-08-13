@@ -32,6 +32,7 @@
         "fzaninotto/faker": "~1.4",
         "laravel/dusk": "^2.0",
         "mockery/mockery": "0.9.*",
+        "nunomaduro/collision": "^2.0",
         "phpunit/phpunit": "~6.0"
     },
     "autoload": {
@@ -54,7 +55,8 @@
             "dont-discover": [
                 "barryvdh/laravel-debugbar",
                 "barryvdh/laravel-ide-helper",
-                "laravel/dusk"
+                "laravel/dusk",
+                "nunomaduro/collision"
             ]
         }
     },
