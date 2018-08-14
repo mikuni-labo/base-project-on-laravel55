@@ -193,6 +193,7 @@ return [
         App\Providers\BladeServiceProvider::class,
         App\Providers\PassportServiceProvider::class,
         App\Providers\ResourceServiceProvider::class,
+        App\Providers\StorageServiceProvider::class,
 
     ],
 

@@ -63,6 +63,11 @@ return [
             'bucket' => env('AWS_S3_BUCKET'),
         ],
 
+        'dropbox' => [
+            'driver'       => 'dropbox',
+            'access_token' => env('DROPBOX_ACCESS_TOKEN'),
+        ],
+
     ],
 
 ];
