@@ -35,7 +35,7 @@ class PdfController extends Controller
     private function fpdi()
     {
         $pdf = new Fpdi();
-        $pdf->setSourceFile(storage_path('app/pdf/postcards/postcard.pdf'));
+        $pdf->setSourceFile(storage_path('system/pdf/postcards/postcard.pdf'));
         $pdf->AddPage();
         $pdf->SetMargins(0,0,0);
         $importPage = $pdf->importPage(1);
